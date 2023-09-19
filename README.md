@@ -1,6 +1,5 @@
 # Unity Development Toolkit 2
 Offering a comprehensive collection of practices and tools designed to streamline and enhance the game development process within the Unity engine.
-The orogonal UDT was designed in a sloppy fashion, lacking focus on ease of use and simplicity.
 
 ## Installation
 Installing a Unity package directly from a GitHub repository URL via the Unity Package Manager (UPM) can be done, but it involves an additional step compared to installing from the Package Manager window. Here are the steps:
