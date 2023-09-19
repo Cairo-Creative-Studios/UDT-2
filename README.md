@@ -2,7 +2,16 @@
 A comprehensive collection of practices and tools designed to streamline and enhance the game development process within the Unity engine.
 The orogonal UDT was designed in a sloppy fashion, lacking focus on ease of use and simplicity.
 
-# Pinacles of Design
+## Installation
+Installing a Unity package directly from a GitHub repository URL via the Unity Package Manager (UPM) can be done, but it involves an additional step compared to installing from the Package Manager window. Here are the steps:
+
+1. Copy the Git URL above
+2. Open the Unity Package Manager
+3. Click the plus button
+4. Click "Add package from Git URL"
+5. Paste, and click Add.
+
+## Pinacles of Design
 - Modular Runtime Singletons with State Management 
   -
   The `Runtime<TRuntime, TData>` classes are modular singletons instantiated at the start of the runtime in Unity. These classes provide a versatile foundation for managing game objects, input, and instances. They also incorporate nested `IStateMachine` for dynamic game state management, enabling developers to create organized and efficient Unity projects while seamlessly handling state transitions and interactions.
