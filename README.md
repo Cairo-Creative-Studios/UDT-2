@@ -11,6 +11,8 @@ The orogonal UDT was designed in a sloppy fashion, lacking focus on ease of use 
 
 using UnityEngine;
 using Rich.System;
+using Rich.Controllables;
+using Rich.StateMachines;
 
 public class MyGame : Runtime<MyGame, MyGameData>
 {
