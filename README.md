@@ -1,5 +1,5 @@
 # Unity Development Toolkit 2
-A comprehensive collection of practices and tools designed to streamline and enhance the game development process within the Unity engine.
+Offering a comprehensive collection of practices and tools designed to streamline and enhance the game development process within the Unity engine.
 The orogonal UDT was designed in a sloppy fashion, lacking focus on ease of use and simplicity.
 
 ## Installation
