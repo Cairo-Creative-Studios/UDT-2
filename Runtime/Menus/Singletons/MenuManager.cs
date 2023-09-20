@@ -5,6 +5,9 @@ using Rich.System;
 using UnityEngine.Events;
 using Rich.DataTypes;
 using Rich.Controllables;
+using UnityEditor;
+using System.Collections.Generic;
+using System;
 
 namespace Rich.Menus
 {
@@ -144,6 +147,91 @@ namespace Rich.Menus
                     CloseMenu(menu);
                 }
             }
+        }
+
+        /// <summary>
+        /// Queries the given Menu's VisualElement for the Element with the given name
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static T Q<T>(MenuBase menu, string name) where T : VisualElement
+        {
+            return menu.menuElement.Q<T>(name);
+        }
+
+        /// <summary>
+        /// Queries all Open Menus' VisualElements for the Element with the given name
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static T Q<T>(string name) where T : VisualElement
+        {
+            foreach(var node in singleton.hierarchy.Flatten())
+            {
+                var element = node.value.menuElement.Q<T>(name);
+                if(element != null)
+                {
+                    return element;
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Get all Elements of Type T from the given Menu's VisualElement
+        /// If no Menu is given, all Elements of Type T from all Menus will be returned
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="menu"></param>
+        /// <returns></returns>
+        public static T[] GetAll<T>(MenuBase menu = null) where T : VisualElement
+        {
+            List<T> matchingElements = new();
+            
+            if(menu == null)
+            {
+                foreach(var node in singleton.hierarchy.Flatten())
+                {
+                    matchingElements.AddRange(SearchRecursivelyForElementsOfType<T>(node.value.menuElement));
+                }
+            }
+            else
+            {
+                matchingElements.AddRange(SearchRecursivelyForElementsOfType<T>(menu.menuElement));
+            }
+
+            return matchingElements.ToArray();
+        }
+
+        /// <summary>
+        /// Get all Elements of Type T from the given Menu's VisualElement that match the given Predicate
+        /// If no Menu is given, all Elements of Type T, matching the predicate, from all Menus will be returned
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="menu"></param>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public static T[] GetAllMatchingPredicate<T>(MenuBase menu, Predicate<T> predicate) where T : VisualElement
+        {
+            List<T> matchingElements = new();
+            matchingElements.AddRange(GetAll<T>(menu).Where(x => predicate(x)));
+            return matchingElements.ToArray();
+        }
+
+        private static List<T> SearchRecursivelyForElementsOfType<T>(VisualElement element) where T : VisualElement
+        {
+            List<T> matchingElements = new();
+            foreach(var child in element.Children())
+            {
+                if(child.GetType().IsSubclassOf(typeof(T)))
+                {
+                    matchingElements.Add((T)child);
+                }
+                matchingElements.AddRange(SearchRecursivelyForElementsOfType<T>(child));
+            }
+            return matchingElements;
         }
 
         /// <summary>
