@@ -1,0 +1,17 @@
+{
+    "name": "Rich.System",
+    "rootNamespace": "",
+    "references": [
+        "Unity.InputSystem",
+        "NaughtyAttributes.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
