@@ -1,15 +1,13 @@
-using System.Buffers.Text;
-using System.Collections.Generic;
 using Rich.DataContainers;
 using Rich.StateMachines;
 using Rich.ObjectPools;
 using Rich.PrefabTables;
 using UnityEngine;
-using System.Linq;
 using Rich.Controllables;
 using Rich.Instances;
 using Rich.Menus;
 using Rich.Audio;
+using Rich.Scriptables;
 
 namespace Rich.System
 {
@@ -21,7 +19,7 @@ namespace Rich.System
             instance.Destroy();
         }
     }
-
+    
     /// <summary>
     /// Runtimes are Singletons that are Instantiated at the start of the Runtime.
     /// </summary>
@@ -184,6 +182,17 @@ namespace Rich.System
         public static void StopAudioWithTag(string tag)
         {
             AudioManager.StopWithTag(tag);
+        }
+
+        /// <summary>
+        /// Binds a variable to a field on an object instance.
+        /// </summary>
+        /// <param name="instance">The object instance to bind the variable to.</param>
+        /// <param name="variableName">The name of the variable to bind.</param>
+        /// <param name="field">The field to bind the variable to.</param>
+        public static void Bind<TValue>(string variableName, BindMode bindMode, object instance, string fieldOrPropertyName)
+        {
+            ScriptableLogicManager.Bind<TValue>(variableName, bindMode, instance, fieldOrPropertyName);
         }
     }
 }

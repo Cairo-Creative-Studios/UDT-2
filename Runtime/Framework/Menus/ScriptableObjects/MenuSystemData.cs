@@ -1,6 +1,4 @@
 using Rich.DataContainers;
-using Rich.ScriptableEvents;
-using System;
 using UnityEngine.UIElements;
 
 namespace Rich.Menus

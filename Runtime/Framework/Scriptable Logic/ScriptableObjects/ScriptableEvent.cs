@@ -2,15 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Rich.Scriptables.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Rich.ScriptableEvents
+namespace Rich.Scriptables
 {
     [Serializable]
     public class ScriptableEvent : ScriptableObject
     {
         public UnityEvent<object[]> unityEvent = new();
+        public ScriptableVariable[] variables;
 
         public void Invoke(params object[] args)
         {

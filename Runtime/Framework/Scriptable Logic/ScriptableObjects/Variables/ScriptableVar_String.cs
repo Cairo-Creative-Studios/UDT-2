@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
+using Rich.Scriptables.Utilities;
 
-namespace Rich.ScriptableEvents.Variables
+namespace Rich.Scriptables.Variables
 {
     [CreateAssetMenu(fileName = "ScriptableVar_String", menuName = "Rich/Scriptable Logic/Variables/String")]
     internal class ScriptableVar_String : ScriptableVariable<string>

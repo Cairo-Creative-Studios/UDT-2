@@ -3,7 +3,7 @@ using Rich.DataContainers;
 using UnityEngine.Windows;
 using Rich.Extensions;
 using System;
-using Rich.ScriptableEvents;
+using Rich.Scriptables;
 using Rich.Controllables;
 using Rich.Instances;
 using Rich.ObjectPools;

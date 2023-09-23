@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using NaughtyAttributes;
 using UnityEngine.UIElements;
-using Rich.ScriptableEvents;
+using Rich.Scriptables;
 
 #if UNITY_EDITOR
 using UnityEditor;

@@ -58,6 +58,7 @@ namespace Rich.Menus
         
         private GameObject rootMenuObject;
         private Tree<MenuBase> hierarchy = new();
+        private List<MenuHolder> menuControllers = new();
 
     
         void Awake()
@@ -96,6 +97,13 @@ namespace Rich.Menus
         public static T OpenMenu<T>(MenuBase parent = null) where T : MenuBase
         {
             var menu = ScriptableObject.CreateInstance<T>();
+
+            var menuObject = new GameObject(menu.name);
+            menuObject.transform.SetParent(singleton.rootMenuObject.transform);
+            var menuController = menuObject.AddComponent<MenuHolder>();
+            menuController.menu = menu;
+            menu.menuController = menuController;
+
             singleton.hierarchy.Add(menu, parent);
             menu.OpenMenu();
             singleton.OnMenuOpened.Invoke(menu);
@@ -109,6 +117,7 @@ namespace Rich.Menus
         public static void CloseMenu(MenuBase menu)
         {
             singleton.OnMenuClosed.Invoke(menu);
+            Destroy(menu.menuController.gameObject);
             menu.CloseMenu();
             singleton.hierarchy.Remove(menu);
             Destroy(menu);

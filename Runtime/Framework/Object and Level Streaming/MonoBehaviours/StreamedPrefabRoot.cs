@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using Rich.Extensions;
-using Rich.ScriptableEvents;
+using Rich.Scriptables;
 using NaughtyAttributes;
 using UnityEditor.SceneManagement;
 using UnityEditor.Build;

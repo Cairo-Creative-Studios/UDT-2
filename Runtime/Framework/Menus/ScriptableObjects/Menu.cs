@@ -8,6 +8,7 @@ namespace Rich.Menus
     {
         public  VisualTreeAsset menuAsset;
         [HideInInspector] public VisualElement menuElement;
+        [HideInInspector] public MenuHolder menuController;
 
         public virtual void OpenMenu()
         {
