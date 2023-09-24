@@ -1,0 +1,16 @@
+{
+    "name": "AudioTests",
+    "rootNamespace": "",
+    "references": [
+        "GUID:61eff6b7f44aff14082b44b1133ba995"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
