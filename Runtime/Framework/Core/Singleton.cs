@@ -8,6 +8,7 @@ using Rich.Controllables;
 using Rich.Instances;
 using Rich.ObjectPools;
 using Rich.Menus;
+using UnityEngine.SceneManagement;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -23,8 +24,22 @@ namespace Rich.System
         {
             var singleton = new GameObject().AddComponent(type) as SingletonBase;
             singleton.Init();
+
+            SceneManager.activeSceneChanged += singleton.SceneChanged;
+            SceneManager.sceneLoaded += singleton.SceneLoaded;
+            SceneManager.sceneUnloaded += singleton.SceneUnloaded;
+
             return (IRuntime)singleton;
         }
+
+        protected virtual void SceneChanged(Scene previousScene, Scene nextScene)
+        { }
+
+        protected virtual void SceneLoaded(Scene scene, LoadSceneMode mode)
+        { }
+
+        protected virtual void SceneUnloaded(Scene scene)
+        { }
     }
 
     public class Singleton<T, TData> : SingletonBase, IStaticDataContainer<TData> where TData : Data where T : Singleton<T, TData>

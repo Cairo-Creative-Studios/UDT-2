@@ -3,8 +3,8 @@ using Rich.Scriptables.Utilities;
 
 namespace Rich.Scriptables.Variables
 {
-    [CreateAssetMenu(fileName = "ScriptableVar_String", menuName = "Rich/Scriptable Logic/Variables/String")]
-    internal class ScriptableVar_String : ScriptableVariable<string>
+    [CreateAssetMenu(fileName = "New String Variable", menuName = "Rich/Scriptable Logic/Variables/String")]
+    public sealed class ScriptableVar_String : ScriptableVariable<string>
     {
     }
 }

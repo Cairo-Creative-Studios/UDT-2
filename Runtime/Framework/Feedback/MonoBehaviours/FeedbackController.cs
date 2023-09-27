@@ -14,11 +14,15 @@ namespace Rich.Feedbacks
         {
             foreach (var feedback in _feedbacks)
             {
-                feedback.UpdateFeedback();
+                if(feedback.isPlaying)
+                {
+                    feedback.UpdateFeedback();
+                    feedback.timeElapsed = Time.time - feedback.timeStarted;
+                }
             }
         }
 
-        public void AddFeedback(Feedback feedback)
+        public void AddFeedback(Feedback feedback, params (string, object)[] args)
         {
             _feedbacks.Add(feedback);
         }

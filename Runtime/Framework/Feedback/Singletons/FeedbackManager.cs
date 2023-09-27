@@ -31,6 +31,7 @@ namespace Rich.Feedbacks
                 singleton.feedbackControllers.Add(feedbackController);
             }
 
+            createdFeedback.controller = feedbackController;
             feedbackController.AddFeedback(createdFeedback);
 
             return createdFeedback;

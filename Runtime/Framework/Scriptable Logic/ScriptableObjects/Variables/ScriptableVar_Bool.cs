@@ -3,8 +3,8 @@ using Rich.Scriptables.Utilities;
 
 namespace Rich.Scriptables.Variables
 {
-    [CreateAssetMenu(fileName = "ScriptableVar_Bool", menuName = "Rich/Scriptable Logic/Variables/Bool")]
-    internal class ScriptableVar_Bool : ScriptableVariable<bool>
+    [CreateAssetMenu(fileName = "New Bool Variable", menuName = "Rich/Scriptable Logic/Variables/Bool")]
+    public sealed class ScriptableVar_Bool : ScriptableVariable<bool>
     {
     }
 }

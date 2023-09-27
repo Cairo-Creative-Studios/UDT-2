@@ -4,7 +4,8 @@
     "references": [
         "Unity.InputSystem",
         "NaughtyAttributes.Core",
-        "MemoryPack"
+        "MemoryPack",
+        "Unity.RenderPipelines.Universal.Runtime"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
