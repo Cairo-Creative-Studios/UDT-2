@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Rich.Scriptables.Utilities
 {
-    public unsafe class ScriptableVariable : ScriptableObject
+    public unsafe class ScriptableVariable : ScriptableObject, IScriptableVariableHook
     {
         public enum DataType
         {
@@ -13,7 +13,7 @@ namespace Rich.Scriptables.Utilities
             Property
         }
 
-        /// <summary>
+        /// <summary> 
         /// The fields that are set to the value of this variable.
         /// </summary>
         protected Dictionary<object, List<(DataType, FieldInfo, PropertyInfo)>> _GetBinds = new();
@@ -154,7 +154,7 @@ namespace Rich.Scriptables.Utilities
         { 
             get
             {
-                return (T)_value; 
+                return _value != null ? (T)_value : default(T); 
             }
             set
             {
@@ -176,5 +176,13 @@ namespace Rich.Scriptables.Utilities
                 }
             } 
         }
+
+        [SerializeProperty("Value", true)]
+        public T value;
+    }
+
+    public interface IScriptableVariableHook
+    {
+
     }
 }

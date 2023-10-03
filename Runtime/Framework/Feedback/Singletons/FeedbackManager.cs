@@ -1,4 +1,5 @@
 ﻿using Rich.Extensions;
+using Rich.Scriptables;
 using Rich.System;
 using System;
 using System.Collections.Generic;
@@ -12,17 +13,25 @@ namespace Rich.Feedbacks
     {
         [SerializeField]
         private List<FeedbackController> feedbackControllers = new();
-        private static Type[] feedbackTypes;
+        private static Type[] _feedbackTypes;
+        public static Type[] feedbackTypes
+        {
+            get
+            {
+                _feedbackTypes = _feedbackTypes != null ? _feedbackTypes : typeof(IFeedbackHook).GetInterfacingTypes().Where(x => x != typeof(Feedback) && x.BaseType != typeof(Feedback)).ToArray();
+                return _feedbackTypes;
+            }
+        }
 
         void Awake()
         {
-            feedbackTypes = typeof(IFeedbackHook).GetInterfacingTypes();
+            _feedbackTypes = typeof(IFeedbackHook).GetInterfacingTypes();
         }
 
         public static T AddFeedback<T>(GameObject gameObject) where T : Feedback
         {
-            var feedbackTypeToCreate = feedbackTypes.Where(type => type.IsSubclassOf(typeof(T))).Select(type => (T)Activator.CreateInstance(type)).ToList();
-            var createdFeedback = typeof(ScriptableObject).GetMethod("CreateInstance", new Type[] { }).MakeGenericMethod(typeof(T)).Invoke(null, null) as T;
+            var createdFeedbackHandle = new ScriptableObjectAsset<T>();
+            var createdFeedback = createdFeedbackHandle.GetScriptableAs<T>();
 
             var feedbackController = gameObject.GetComponent<FeedbackController>();
             if (feedbackController == null)
@@ -35,6 +44,12 @@ namespace Rich.Feedbacks
             feedbackController.AddFeedback(createdFeedback);
 
             return createdFeedback;
+        }
+
+        public static Type[] GetFeedbackType(Type feedbackType)
+        {
+            var feedbackTypeToCreate = feedbackTypes.Where(type => type.IsSubclassOf(feedbackType));
+            return feedbackTypeToCreate.ToArray();
         }
 
         public static T GetFeedback<T>(GameObject gameObject, int nth) where T : Feedback

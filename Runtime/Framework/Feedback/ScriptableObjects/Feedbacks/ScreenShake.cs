@@ -1,4 +1,5 @@
 ﻿using NaughtyAttributes;
+using Rich.Scriptables.Variables;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -8,32 +9,33 @@ namespace Rich.Feedbacks
     [ExecuteAlways]
     public class Screenshake : Tween
     {
-        void OnEnable()
-        {
-            shakeTween = CreateInstance<Tween>();
-            shakeTween.SetTweenedValue<Vector3>(this, "currentOffset");
-        }
-        
-        void OnValidate()
-        {
-            shakeTween.maxVector3 = Vector3.one * strength;
-        }
+        public bool relativeToStartingPosition = false;
+        private Transform cameraTransform;
+        private Vector3 currentOffset;
+        private Vector3 startingPosition;
 
         protected override void FeedbackStarted()
         {
-            controller.AddFeedback(shakeTween);
             cameraTransform = Camera.main.transform;
-            shakeTween.speed = speed;
-            shakeTween.Play();
+            if(relativeToStartingPosition)
+            {
+                startingPosition = cameraTransform.position;
+            }
         }
 
         public override void UpdateFeedback()
         {
-            currentOffset.x += Random.Range(-strength, strength);
-            currentOffset.y += Random.Range(-strength, strength);
-            currentOffset.z += Random.Range(-strength, strength);
+            base.UpdateFeedback();
 
-            cameraTransform.position += currentOffset;
+            if(valueType == ValueType.Vec3)
+            {
+                var vec3Value = SerializedVariable.GetScriptableAs<ScriptableVar_Vector3>().Value;
+                currentOffset.x = Random.Range(-vec3Value.x, vec3Value.x);
+                currentOffset.y = Random.Range(-vec3Value.y, vec3Value.y);
+                currentOffset.z = Random.Range(-vec3Value.z, vec3Value.z);
+            }
+
+            cameraTransform.position = relativeToStartingPosition ? startingPosition + currentOffset : cameraTransform.position + currentOffset;
         }
     }
 }

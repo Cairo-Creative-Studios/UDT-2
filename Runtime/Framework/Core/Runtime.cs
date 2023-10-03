@@ -193,7 +193,7 @@ namespace Rich.System
         /// <param name="field">The field to bind the variable to.</param>
         public static void Bind<TValue>(string variableName, BindMode bindMode, object instance, string fieldOrPropertyName)
         {
-            ScriptableLogicManager.Bind<TValue>(variableName, bindMode, instance, fieldOrPropertyName);
+            ScriptableManager.Bind<TValue>(variableName, bindMode, instance, fieldOrPropertyName);
         }
 
         /// <summary>

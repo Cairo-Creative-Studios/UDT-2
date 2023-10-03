@@ -1,4 +1,6 @@
 ﻿using NaughtyAttributes;
+using Rich.Scriptables;
+using Rich.Scriptables.Utilities;
 using Rich.Scriptables.Variables;
 using UnityEngine;
 
@@ -7,13 +9,21 @@ namespace Rich.Feedbacks
     [CreateAssetMenu(fileName = "New Tween Feedback", menuName = "Rich/Feedbacks/Tween")]
     public class Tween : Feedback<Tween>
     {
+
+        [Foldout("Feedback Settings")]
+        [Header(" - Scriptable Variables - ")]
+        [Tooltip("The Scriptable Variable associated with the current Value of the Feedback. You can tie this to a Field or Property in a Script," +
+            "and the Feedback and also automatically handle acquiring these values to set.")]
+        [Expandable]
+        [AllowNesting]
+        public ScriptableObjectAsset<ScriptableVariable> SerializedVariable;
+
         [Foldout("Tween Settings")]
         public AnimationCurve curve;
 
         [Foldout("Tween Settings")]
         [Tooltip("Sets the shape of the Animation Curve that is used for the motion of the Tween.")]
         public TweeningMode tweenMode = TweeningMode.Linear;
-        private TweeningMode _previousTweenMode = TweeningMode.Linear;
         [Foldout("Tween Settings")]
         [Tooltip("Sets the amount of bounces or sinusodial steps of the Tween Mode")]
         [ShowIf("UsesIterations")]
@@ -113,7 +123,13 @@ namespace Rich.Feedbacks
                     }
                     break;
             }
-            _previousTweenMode = tweenMode;
+
+            if (valueType == ValueType.Float)
+                SerializedVariable.GetScriptableAs<ScriptableVar_Float>(true);
+            if (valueType == ValueType.Vec2)
+                SerializedVariable.GetScriptableAs<ScriptableVar_Vector2>(true);
+            if (valueType == ValueType.Vec3)
+                SerializedVariable.GetScriptableAs<ScriptableVar_Vector3>(true);
         }
 
         /// <summary>
@@ -128,30 +144,21 @@ namespace Rich.Feedbacks
                 case var foo when foo.GetType() == typeof(float):
                     valueType = ValueType.Float;
 
-                    if (Value == null)
-                        Value = CreateInstance<ScriptableVar_Float>();
-
-                    Value.BindGetter<T>(instance, fieldOrPropertyName);
+                    SerializedVariable.GetScriptableAs<ScriptableVar_Float>(true).BindGetter<T>(instance, fieldOrPropertyName);
                     minFloat = (float)(object)min;
                     maxFloat = (float)(object)max;
                     break;
                 case var foo when foo.GetType() == typeof(Vector2):
                     valueType = ValueType.Vec2;
 
-                    if (Value == null)
-                        Value = CreateInstance<ScriptableVar_Vector2>();
-
-                    Value.BindGetter<T>(instance, fieldOrPropertyName);
+                    SerializedVariable.GetScriptableAs<ScriptableVar_Vector2>(true).BindGetter<T>(instance, fieldOrPropertyName);
                     minVector2 = (Vector2)(object)min;
                     maxVector2 = (Vector2)(object)max;
                     break;
                 case var foo when foo.GetType() == typeof(Vector3):
                     valueType = ValueType.Vec3;
 
-                    if (Value == null)
-                        Value = CreateInstance<ScriptableVar_Vector3>();
-
-                    Value.BindGetter<T>(instance, fieldOrPropertyName);
+                    SerializedVariable.GetScriptableAs<ScriptableVar_Vector3>(true).BindGetter<T>(instance, fieldOrPropertyName);
                     minVector3 = (Vector3)(object)min;
                     maxVector3 = (Vector3)(object)max;
                     break;
@@ -172,26 +179,17 @@ namespace Rich.Feedbacks
                 case var foo when foo.GetType() == typeof(float):
                     valueType = ValueType.Float;
 
-                    if (Value == null)
-                        Value = CreateInstance<ScriptableVar_Float>();
-
-                    Value.BindGetter<T>(instance, fieldOrPropertyName);
+                    SerializedVariable.GetScriptableAs<ScriptableVar_Float>(true).BindGetter<T>(instance, fieldOrPropertyName);
                     break;
                 case var foo when foo.GetType() == typeof(Vector2):
                     valueType = ValueType.Vec2;
 
-                    if (Value == null)
-                        Value = CreateInstance<ScriptableVar_Vector2>();
-
-                    Value.BindGetter<T>(instance, fieldOrPropertyName);
+                    SerializedVariable.GetScriptableAs<ScriptableVar_Vector2>(true).BindGetter<T>(instance, fieldOrPropertyName);
                     break;
                 case var foo when foo.GetType() == typeof(Vector3):
                     valueType = ValueType.Vec3;
 
-                    if (Value == null)
-                        Value = CreateInstance<ScriptableVar_Vector3>();
-
-                    Value.BindGetter<T>(instance, fieldOrPropertyName);
+                    SerializedVariable.GetScriptableAs<ScriptableVar_Vector3>(true).BindGetter<T>(instance, fieldOrPropertyName);
                     break;
                 default:
                     return;
@@ -205,26 +203,22 @@ namespace Rich.Feedbacks
             {
                 case ValueType.Float:
                     if (angleTween)
-                        Value.Value = Mathf.LerpAngle(minFloat, maxFloat, timeElapsed * speed);
+                        SerializedVariable.GetScriptableAs<ScriptableVar_Float>(true).Value = Mathf.LerpAngle(minFloat, maxFloat, curve.Evaluate(timeElapsed * speed));
                     else
-                        Value.Value = Mathf.Lerp(minFloat, maxFloat, timeElapsed * speed);
+                        SerializedVariable.GetScriptableAs<ScriptableVar_Float>(true).Value = Mathf.Lerp(minFloat, maxFloat, curve.Evaluate(timeElapsed * speed));
                     break;
                 case ValueType.Vec2:
                     if(angleTween)
-                        Value.Value = minVector2.LerpAngle(maxVector2, timeElapsed * speed);
+                        SerializedVariable.GetScriptableAs<ScriptableVar_Vector2>(true).Value = minVector2.LerpAngle(maxVector2, curve.Evaluate(timeElapsed * speed));
                     else
-                        Value.Value = Vector2.Lerp(minVector2, maxVector2, timeElapsed * speed);
+                        SerializedVariable.GetScriptableAs<ScriptableVar_Vector2>(true).Value = Vector2.Lerp(minVector2, maxVector2, curve.Evaluate(timeElapsed * speed));
                     break;
                 case ValueType.Vec3:
                     if (angleTween)
-                        Value.Value = minVector3.LerpAngle(maxVector3, timeElapsed * speed);
+                        SerializedVariable.GetScriptableAs<ScriptableVar_Vector3>(true).Value = minVector3.LerpAngle(maxVector3, curve.Evaluate(timeElapsed * speed));
                     else
-                        Value.Value = Vector3.Lerp(minVector3, maxVector3, timeElapsed * speed);
+                        SerializedVariable.GetScriptableAs<ScriptableVar_Vector3>(true).Value = Vector3.Lerp(minVector3, maxVector3, curve.Evaluate(timeElapsed * speed));
                     break;
-            }
-            if(timeElapsed*speed >= 1f)
-            {
-                Stop();
             }
         }
     }

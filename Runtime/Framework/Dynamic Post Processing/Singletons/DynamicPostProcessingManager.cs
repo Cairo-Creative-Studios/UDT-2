@@ -24,6 +24,7 @@ namespace Rich.DynamicPostProcessing
         }
         private static Volume globalVolume;
 
+
         void Awake()
         {
             _postProcessComponentTypes = typeof(IPostProcessComponent).GetInterfacingTypes();

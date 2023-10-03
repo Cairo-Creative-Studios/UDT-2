@@ -1,12 +1,10 @@
 ﻿using NaughtyAttributes;
 using Rich.Scriptables;
-using Rich.Scriptables.Utilities;
-using Rich.Scriptables.Variables;
 using UnityEngine;
 
 namespace Rich.Feedbacks
 {
-    public abstract class Feedback : ScriptableObject
+    public abstract class Feedback : ScriptableObject, IFeedbackHook
     {
         [Foldout("Feedback Settings")]
         [HideInInspector]
@@ -17,15 +15,13 @@ namespace Rich.Feedbacks
 
         [Foldout("Feedback Settings")]
         [Header(" - Scriptable Events - ")]
-        public ScriptableEvent OnFeedbackStarted;
+        [Expandable]
+        [AllowNesting]
+        public ScriptableObjectAsset<ScriptableEvent> OnFeedbackStarted;
         [Foldout("Feedback Settings")]
-        public ScriptableEvent OnFeedbackComplete;
-
-        [Foldout("Feedback Settings")]
-        [Header(" - Scriptable Variables - ")]
-        [Tooltip("The Scriptable Variable associated with the current Value of the Feedback. You can tie this to a Field or Property in a Script," +
-            "and the Feedback and also automatically handle acquiring these values to set.")]
-        public ScriptableVariable Value;
+        [Expandable]
+        [AllowNesting]
+        public ScriptableObjectAsset<ScriptableEvent> OnFeedbackComplete;
 
         [Foldout("Feedback Settings")]
         [Tooltip("Multiplied by Time.deltaTime")]
@@ -40,10 +36,8 @@ namespace Rich.Feedbacks
         void Awake()
         {
             //Init events
-            OnFeedbackStarted = CreateInstance<ScriptableEvent>();
-            OnFeedbackComplete = CreateInstance<ScriptableEvent>();
-
-            Value = Value != null ? Value : CreateInstance<ScriptableVar_Float>();
+            OnFeedbackStarted.Verify();
+            OnFeedbackComplete.Verify();
         }
 
         public void SetArguments(params (string, object)[] args)
@@ -64,14 +58,14 @@ namespace Rich.Feedbacks
         {
             isPlaying = true;
             timeStarted = Time.time;
-            OnFeedbackStarted.Invoke();
+            OnFeedbackStarted.GetScriptableAs<ScriptableEvent>().Invoke();
             FeedbackStarted();
         }
 
         public void Stop()
         {
             isPlaying = false;
-            OnFeedbackComplete.Invoke();
+            OnFeedbackComplete.GetScriptableAs<ScriptableEvent>().Invoke();
             FeedbackStopped();
         }
     }

@@ -1,28 +1,37 @@
 using System.Collections.Generic;
 using System.Linq;
-using Rich.Extensions;
-using Rich.Menus;
 using Rich.Scriptables.Utilities;
 using Rich.System;
 using UnityEngine;
+using System;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Rich.Scriptables
 {
     /// <summary>
     /// Manages the Scriptable Logic system by providing methods to access and manipulate Scriptable Variables and Events.
     /// </summary>
-    public class ScriptableLogicManager : Singleton<ScriptableLogicManager, SystemData>
+    public class ScriptableManager : Singleton<ScriptableManager, SystemData>
     {
-
         private static ScriptableVariable[] scriptableVariableResources;
         private static ScriptableEvent[] scriptableEventResources;
+        private static Type[] scriptableEventTypes;
+        private static Type[] scriptableFunctionTypes;
+        private static Type[] scriptableVariableTypes;
         private List<ScriptableVariable> scriptableVariableInstances = new();
+
 
         void Awake()
         {
             scriptableVariableResources = Resources.LoadAll<ScriptableVariable>("");
             scriptableEventResources = Resources.LoadAll<ScriptableEvent>("");
+
             scriptableVariableInstances.AddRange(scriptableVariableResources);
+
+            scriptableEventTypes = scriptableEventResources.Select(x => x.GetType()).ToArray();
         }
 
         void Update()

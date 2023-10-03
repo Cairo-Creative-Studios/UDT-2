@@ -9,6 +9,7 @@ namespace Rich.Instances
         public GameObject gameObject;
         public Transform transform;
         private static List<Instance> instances = new();
+        public static List<Instance> Instances { get => instances; }
 
         private enum MotionController
         {

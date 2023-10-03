@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Rich.Extensions;
+using Rich.Scriptables.Events;
 using Rich.Scriptables.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,14 +10,53 @@ using UnityEngine.Events;
 namespace Rich.Scriptables
 {
     [Serializable]
-    public class ScriptableEvent : ScriptableObject
+    public class ScriptableEvent : ScriptableObject, IScriptableEventHook
     {
         public UnityEvent<object[]> unityEvent = new();
         public ScriptableVariable[] variables;
+        [Tooltip("Parameters that must have matching arguments passed to Invoke the Event (if no Parameters exist in this Array, it will be Invoked regardless of the Arguments passed.")]
+        public ScriptableVariable[] parameters;
+        public bool blocked = false;
 
         public void Invoke(params object[] args)
         {
+            int matchingArgs = 0;
+            List<ScriptableVariable> currentParameters = parameters.ToList();
+
+            foreach (var arg in args)
+            {
+                var matchingParam = parameters.FirstOrDefault(x => x.GetType().GetGenericArguments()[0] == arg.GetType());
+                if(matchingParam != null) 
+                {
+                    matchingArgs++;
+                    matchingParam.Value = arg;
+                    currentParameters.Remove(matchingParam);
+                }
+            }
+
+            this.CallMethod("OnInvoked", args);
+
+            Preprocess(args);
+        }
+
+        public string GetDescription()
+        {
+            return ConstructDescription();
+        }   
+
+        protected void Preprocess(params object[] args)
+        {
+            OnEventTriggered.Event?.Invoke(this, args);
+        }
+
+        protected void Process(params object[] args)
+        {
             unityEvent.Invoke(args);
+        }
+
+        protected virtual string ConstructDescription()
+        {
+            return "";
         }
 
         public void Clear()
@@ -83,5 +123,20 @@ namespace Rich.Scriptables
             var unityAction = new UnityAction<object[]>((args) => action((T1)args[0], (T2)args[1], (T3)args[2], (T4)args[3]));
             this.unityEvent.RemoveListener(unityAction);
         }
+    }
+
+    public abstract class ScriptableEvent<T> : ScriptableEvent where T : ScriptableEvent<T>
+    {
+        public static T Event;
+
+        /// <summary>
+        /// This Method is called when the Event is used to process child nodes, and the Event has been Invoked.
+        /// </summary>
+        public abstract void OnInvoked(params object[] args);
+    }
+
+    public interface IScriptableEventHook
+    {
+
     }
 }
