@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
-using Rich.Extensions;
-using Rich.Scriptables;
+using UDT.Extensions;
+using UDT.Scriptables;
 using NaughtyAttributes;
-using UnityEditor.SceneManagement;
-using UnityEditor.Build;
-using UnityEditor.Build.Reporting;
 
 #if UNITY_EDITOR
 using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEditor.Build;
+using UnityEditor.Build.Reporting;
 #endif
 
-namespace Rich.Streaming
+namespace UDT.Streaming
 {
     /// <summary>
     /// Allows you to Save/Load children of a GameObject as a Prefab, so that it can be streamed in place of the object the StreamedPrefabRoot is attached to.

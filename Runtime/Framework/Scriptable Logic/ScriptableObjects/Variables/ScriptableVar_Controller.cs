@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using Rich.Scriptables.Utilities;
-using Rich.Controllables;
+using UDT.Scriptables.Utilities;
+using UDT.Controllables;
 
-namespace Rich.Scriptables.Variables
+namespace UDT.Scriptables.Variables
 {
     [CreateAssetMenu(fileName = "New Controller Variable", menuName = "Rich/Scriptable Logic/Variables/Controller")]
     public sealed class ScriptableVar_Controller : ScriptableVariable<Controller>

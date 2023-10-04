@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using Rich.Scriptables.Utilities;
+using UDT.Scriptables.Utilities;
 
-namespace Rich.Scriptables.Variables
+namespace UDT.Scriptables.Variables
 {
     [CreateAssetMenu(fileName = "New Vector3 Variable", menuName = "Rich/Scriptable Logic/Variables/Vector3")]
     public sealed class ScriptableVar_Vector3 : ScriptableVariable<Vector3>

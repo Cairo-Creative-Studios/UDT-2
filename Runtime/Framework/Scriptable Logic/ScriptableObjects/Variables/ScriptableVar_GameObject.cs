@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using Rich.Scriptables.Utilities;
+using UDT.Scriptables.Utilities;
 
-namespace Rich.Scriptables.Variables
+namespace UDT.Scriptables.Variables
 {
     [CreateAssetMenu(fileName = "New GameObject Variable", menuName = "Rich/Scriptable Logic/Variables/Game Object")]
     public sealed class ScriptableVar_GameObject : ScriptableVariable<GameObject>

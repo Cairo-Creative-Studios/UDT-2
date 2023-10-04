@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace Rich.Instances
+namespace UDT.Instances
 {
     public sealed class Instance
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace Rich.Factories
+namespace UDT.Factories
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = false, AllowMultiple = true)]
     public class PrefabComponentAttribute : Attribute

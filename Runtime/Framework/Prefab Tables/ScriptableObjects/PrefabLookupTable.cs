@@ -1,8 +1,8 @@
-using Rich.DataContainers;
+using UDT.DataContainers;
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace Rich.PrefabTables
+namespace UDT.PrefabTables
 {
     [CreateAssetMenu(fileName = "Prefab Lookup Table", menuName = "Rich/Prefabs/Prefab Lookup Table")]
     public sealed class PrefabLookupTable : Data

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Rich.DataTypes;
+using UDT.DataTypes;
 using UnityEngine;
 
-namespace Rich.StateMachines
+namespace UDT.StateMachines
 {
     public interface IStateMachine
     {

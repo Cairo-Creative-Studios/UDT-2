@@ -1,17 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Rich.Extensions;
-using Rich.Scriptables.Events;
-using Rich.Scriptables.Utilities;
+using UDT.Extensions;
+using UDT.Scriptables.Events;
+using UDT.Scriptables.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Rich.Scriptables
+namespace UDT.Scriptables
 {
     [Serializable]
     public class ScriptableEvent : ScriptableObject, IScriptableEventHook
     {
+        public bool This;
         public UnityEvent<object[]> unityEvent = new();
         public ScriptableVariable[] variables;
         [Tooltip("Parameters that must have matching arguments passed to Invoke the Event (if no Parameters exist in this Array, it will be Invoked regardless of the Arguments passed.")]

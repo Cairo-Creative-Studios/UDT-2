@@ -1,14 +1,14 @@
 using UnityEngine;
 using System.IO;
 using System.Threading.Tasks;
-using Rich.System;
+using UDT.System;
 
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-namespace Rich.Factories
+namespace UDT.Factories
 {
     public abstract class PrefabFactory<T>
     {

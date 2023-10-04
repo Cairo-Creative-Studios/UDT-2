@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Rich.DataTypes
+namespace UDT.DataTypes
 {
     [Serializable]
     public class Tree<T> : ISerializationCallbackReceiver

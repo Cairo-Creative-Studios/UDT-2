@@ -1,8 +1,8 @@
-using Rich.Scriptables.Utilities;
-using Rich.System;
+using UDT.Scriptables.Utilities;
+using UDT.System;
 using System;
 
-namespace Rich.Scriptables
+namespace UDT.Scriptables
 {
     /// <summary>
     /// Target Methods search for a Target with the given Type T, based on the Scriptable Parameters

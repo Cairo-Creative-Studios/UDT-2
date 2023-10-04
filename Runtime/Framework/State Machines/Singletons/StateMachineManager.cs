@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using Rich.System;
-using Rich.DataTypes;
+using UDT.System;
+using UDT.DataTypes;
 using UnityEngine.Events;
 
-namespace Rich.StateMachines
+namespace UDT.StateMachines
 {
     public sealed class StateMachineManager : Singleton<StateMachineManager, SystemData>
     {

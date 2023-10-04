@@ -1,20 +1,20 @@
 using UnityEngine;
-using Rich.DataContainers;
+using UDT.DataContainers;
 using UnityEngine.Windows;
-using Rich.Extensions;
+using UDT.Extensions;
 using System;
-using Rich.Scriptables;
-using Rich.Controllables;
-using Rich.Instances;
-using Rich.ObjectPools;
-using Rich.Menus;
+using UDT.Scriptables;
+using UDT.Controllables;
+using UDT.Instances;
+using UDT.ObjectPools;
+using UDT.Menus;
 using UnityEngine.SceneManagement;
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-namespace Rich.System
+namespace UDT.System
 {
     public abstract class SingletonBase : MonoBehaviour
     {

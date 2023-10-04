@@ -1,8 +1,8 @@
-using Rich.System;
+using UDT.System;
 using System.Linq;
 using UnityEngine;
 
-namespace Rich.SpriteRendering
+namespace UDT.SpriteRendering
 {
     public class SpriteManager : Singleton<SpriteManager>
     {

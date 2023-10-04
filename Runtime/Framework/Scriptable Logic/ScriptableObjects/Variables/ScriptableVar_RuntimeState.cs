@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using Rich.Scriptables.Utilities;
-using Rich.System;
+using UDT.Scriptables.Utilities;
+using UDT.System;
 
-namespace Rich.Scriptables.Variables
+namespace UDT.Scriptables.Variables
 {
     [CreateAssetMenu(fileName = "New Runtime State Variable", menuName = "Rich/Scriptable Logic/Variables/Runtime State")]
     public sealed class ScriptableVar_RuntimeState : ScriptableVariable<IRuntime>

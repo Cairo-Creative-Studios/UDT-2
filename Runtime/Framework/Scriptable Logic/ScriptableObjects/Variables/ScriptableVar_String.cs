@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using Rich.Scriptables.Utilities;
+using UDT.Scriptables.Utilities;
 
-namespace Rich.Scriptables.Variables
+namespace UDT.Scriptables.Variables
 {
     [CreateAssetMenu(fileName = "New String Variable", menuName = "Rich/Scriptable Logic/Variables/String")]
     public sealed class ScriptableVar_String : ScriptableVariable<string>

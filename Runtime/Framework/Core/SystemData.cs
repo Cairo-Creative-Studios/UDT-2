@@ -1,8 +1,8 @@
-using Rich.DataContainers;
+using UDT.DataContainers;
 using UnityEngine.InputSystem;
 
 
-namespace Rich.System
+namespace UDT.System
 {
     public sealed class SystemData : Data
     {

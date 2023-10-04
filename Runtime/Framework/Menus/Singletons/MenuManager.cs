@@ -1,15 +1,14 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Rich.System;
+using UDT.System;
 using UnityEngine.Events;
-using Rich.DataTypes;
-using Rich.Controllables;
-using UnityEditor;
+using UDT.DataTypes;
+using UDT.Controllables;
 using System.Collections.Generic;
 using System;
 
-namespace Rich.Menus
+namespace UDT.Menus
 {
     /// <summary>
     /// The Menu Manager that can be used to open and close "Menu" ScriptableObjects,

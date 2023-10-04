@@ -1,13 +1,13 @@
-﻿using Rich.Extensions;
-using Rich.Scriptables;
-using Rich.System;
+﻿using UDT.Extensions;
+using UDT.Scriptables;
+using UDT.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace Rich.Feedbacks
+namespace UDT.Feedbacks
 {
     public sealed class FeedbackManager : Singleton<FeedbackManager, SystemData>
     {

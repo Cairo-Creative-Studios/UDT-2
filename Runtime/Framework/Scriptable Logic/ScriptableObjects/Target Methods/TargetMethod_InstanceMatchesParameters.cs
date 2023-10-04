@@ -1,8 +1,8 @@
-using Rich.Instances;
-using Rich.Scriptables.Utilities;
+using UDT.Instances;
+using UDT.Scriptables.Utilities;
 using UnityEngine;
 
-namespace Rich.Scriptables.TargetMethods
+namespace UDT.Scriptables.TargetMethods
 {
     public class TargetMethod_InstanceMatchesParameters : TargetMethod<TargetMethod_InstanceMatchesParameters, Instance>
     {

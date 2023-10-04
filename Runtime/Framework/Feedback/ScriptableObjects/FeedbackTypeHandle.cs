@@ -1,14 +1,14 @@
 using NaughtyAttributes;
-using Rich.Scriptables;
+using UDT.Scriptables;
 using System;
 using UnityEngine;
 
-namespace Rich.Feedbacks
+namespace UDT.Feedbacks
 {
     public class FeedbackTypeHandle : ScriptableObject
     {
         [Dropdown("GetFeedbackTypes")]
-        public string feedbackType;
+        public string feedbackType = "";
         public ScriptableObjectAsset asset;
         public DropdownList<string> GetFeedbackTypes()
         {
@@ -22,8 +22,6 @@ namespace Rich.Feedbacks
             }
             return list;
         }
-
-        private string _previousFeedbackType;
 
 
         [Button("Play", EButtonEnableMode.Always)]

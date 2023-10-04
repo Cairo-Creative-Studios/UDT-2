@@ -1,4 +1,4 @@
-namespace Rich.DataContainers
+namespace UDT.DataContainers
 {
     public interface IStaticDataContainer<T> where T : Data
     {

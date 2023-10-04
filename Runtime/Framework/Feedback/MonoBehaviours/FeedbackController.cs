@@ -1,17 +1,20 @@
 ﻿using NaughtyAttributes;
-using Rich.Scriptables;
-using System;
+using UDT.Scriptables;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Rich.Feedbacks
+namespace UDT.Feedbacks
 {
     [ExecuteAlways]
     public class FeedbackController : MonoBehaviour
     {
-        [SerializeField]
-        public List<ScriptableObjectAsset<FeedbackTypeHandle>> _feedbackHandleAssets = new List<ScriptableObjectAsset<FeedbackTypeHandle>>();
+        public List<ScriptableObjectAsset<FeedbackTypeHandle>> _feedbackHandleAssets;
+
+        private void Start()
+        {
+            if (_feedbackHandleAssets == null) _feedbackHandleAssets = new();
+        }
 
         void Update()
         {
@@ -19,16 +22,16 @@ namespace Rich.Feedbacks
             {
                 for (int i = 0; i < _feedbackHandleAssets.Count; i++)
                 {
-                    if (_feedbackHandleAssets.Where(x => x.scriptableObject == _feedbackHandleAssets[i].scriptableObject).Count() > 1)
-                    {
                         _feedbackHandleAssets[i].Verify();
-                    }
+/*                    if (_feedbackHandleAssets.Where(x => x.scriptableObject == _feedbackHandleAssets[i].scriptableObject).Count() > 1)
+                    {
+                    }*/
                 }
             }
 
             foreach (var feedbackReference in _feedbackHandleAssets.Select(x => x.GetScriptableAs<FeedbackTypeHandle>()))
             {
-                if(feedbackReference.feedbackType != "None" && feedbackReference.feedbackType != null)
+                if(feedbackReference.feedbackType != "None" && feedbackReference.feedbackType != null && feedbackReference.feedbackType != "")
                 {
                     feedbackReference.asset.SetType(feedbackReference.feedbackType);
                     var feedback = feedbackReference.asset.GetScriptableAs<Feedback>(); 

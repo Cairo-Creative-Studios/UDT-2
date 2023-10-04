@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Rich.ObjectPools
+namespace UDT.ObjectPools
 {
     public static class ObjectPoolExtensionsForGameObjects
     {

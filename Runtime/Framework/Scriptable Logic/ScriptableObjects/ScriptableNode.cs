@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Rich.Scriptables.Utilities
+namespace UDT.Scriptables.Utilities
 {
     public class ScriptableNode : ScriptableObject
     {

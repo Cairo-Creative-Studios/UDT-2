@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Rich.System;
+using UDT.System;
 
-namespace Rich.ObjectPools
+namespace UDT.ObjectPools
 {
     public sealed class ObjectPoolManager : Singleton<ObjectPoolManager, SystemData>
     {

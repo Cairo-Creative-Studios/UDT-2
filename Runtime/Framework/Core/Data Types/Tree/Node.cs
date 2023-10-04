@@ -7,7 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Xml.Schema;
 using UnityEngine;
 
-namespace Rich.DataTypes
+namespace UDT.DataTypes
 {
     [Serializable]
     public class Node<T> : ISerializationCallbackReceiver

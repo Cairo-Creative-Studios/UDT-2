@@ -2,10 +2,10 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using UnityEngine;
-using Rich.StateMachines;
-using Rich.Extensions;
+using UDT.StateMachines;
+using UDT.Extensions;
 
-namespace Rich.StateMachines.ForGameObjects
+namespace UDT.StateMachines.ForGameObjects
 {
     public static class StateMachineForGameObjectsExtensions
     {

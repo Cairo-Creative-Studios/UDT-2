@@ -1,10 +1,10 @@
 ﻿using NaughtyAttributes;
-using Rich.Scriptables.Variables;
+using UDT.Scriptables.Variables;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-namespace Rich.Feedbacks
+namespace UDT.Feedbacks
 {
     [ExecuteAlways]
     public class Screenshake : Tween

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Rich.SpriteRendering
+namespace UDT.SpriteRendering
 {
     [ExecuteAlways]
     public class SpriteSheetRenderer : MonoBehaviour

@@ -1,10 +1,10 @@
-﻿using Rich.System;
+﻿using UDT.System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace Rich.Audio
+namespace UDT.Audio
 {
     public class AudioManager : Singleton<AudioManager, AudioManagerData>
     {

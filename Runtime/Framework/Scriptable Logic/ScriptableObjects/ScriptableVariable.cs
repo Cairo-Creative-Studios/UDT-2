@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-namespace Rich.Scriptables.Utilities
+namespace UDT.Scriptables.Utilities
 {
     public unsafe class ScriptableVariable : ScriptableObject, IScriptableVariableHook
     {

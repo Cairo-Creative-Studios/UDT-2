@@ -1,9 +1,9 @@
-using Rich.Controllables.Serialized;
-using Rich.Extensions;
+using UDT.Controllables.Serialized;
+using UDT.Extensions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Rich.Controllables 
+namespace UDT.Controllables 
 {
     public interface IControllable
     {

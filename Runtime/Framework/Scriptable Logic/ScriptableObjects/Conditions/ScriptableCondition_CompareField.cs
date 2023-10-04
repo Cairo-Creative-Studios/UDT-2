@@ -3,7 +3,7 @@ using System;
 
 namespace UDT.Scriptables.Conditions
 {
-    public class ScriptableCondition_GameObjectHasComponent : ScriptableCondition
+    public class ScriptableCondition_CompareField : ScriptableCondition
     {
         public Type componentType;
         protected override bool OnCheck(params object[] args)

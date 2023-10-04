@@ -2,7 +2,7 @@
 using System;
 using UnityEngine.InputSystem;
 
-namespace Rich.Controllables.Serialized
+namespace UDT.Controllables.Serialized
 {
     [MemoryPackable]
     [Serializable]

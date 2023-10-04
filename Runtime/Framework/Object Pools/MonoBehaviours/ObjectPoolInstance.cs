@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Rich.ObjectPools
+namespace UDT.ObjectPools
 {
     [RequireComponent(typeof(ObjectArchetype))]
     [DisallowMultipleComponent]

@@ -1,11 +1,11 @@
 ﻿using NaughtyAttributes;
-using Rich.DynamicPostProcessing;
+using UDT.DynamicPostProcessing;
 using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-namespace Rich.Feedbacks
+namespace UDT.Feedbacks
 {
     [ExecuteAlways]
     public class PostProcessTween : Tween

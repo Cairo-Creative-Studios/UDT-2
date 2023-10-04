@@ -1,7 +1,7 @@
 ﻿using NaughtyAttributes;
 using UnityEngine;
 
-namespace Rich.Audio
+namespace UDT.Audio
 {
     [CreateAssetMenu(fileName = "AudioClipReference", menuName = "Rich/Audio/AudioClipReference")]
     public class AudioClipReference : ScriptableObject

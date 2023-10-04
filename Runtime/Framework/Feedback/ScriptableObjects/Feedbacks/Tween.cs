@@ -1,10 +1,10 @@
 ﻿using NaughtyAttributes;
-using Rich.Scriptables;
-using Rich.Scriptables.Utilities;
-using Rich.Scriptables.Variables;
+using UDT.Scriptables;
+using UDT.Scriptables.Utilities;
+using UDT.Scriptables.Variables;
 using UnityEngine;
 
-namespace Rich.Feedbacks
+namespace UDT.Feedbacks
 {
     [CreateAssetMenu(fileName = "New Tween Feedback", menuName = "Rich/Feedbacks/Tween")]
     public class Tween : Feedback<Tween>

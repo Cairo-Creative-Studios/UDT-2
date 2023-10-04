@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Rich.Scriptables.Utilities;
-using Rich.System;
+using UDT.Scriptables.Utilities;
+using UDT.System;
 using UnityEngine;
 using System;
 
@@ -9,7 +9,7 @@ using System;
 using UnityEditor;
 #endif
 
-namespace Rich.Scriptables
+namespace UDT.Scriptables
 {
     /// <summary>
     /// Manages the Scriptable Logic system by providing methods to access and manipulate Scriptable Variables and Events.

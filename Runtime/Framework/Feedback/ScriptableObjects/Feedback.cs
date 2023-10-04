@@ -1,8 +1,8 @@
 ﻿using NaughtyAttributes;
-using Rich.Scriptables;
+using UDT.Scriptables;
 using UnityEngine;
 
-namespace Rich.Feedbacks
+namespace UDT.Feedbacks
 {
     public abstract class Feedback : ScriptableObject, IFeedbackHook
     {

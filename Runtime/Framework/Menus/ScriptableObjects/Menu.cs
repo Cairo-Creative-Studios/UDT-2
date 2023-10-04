@@ -1,8 +1,8 @@
-using Rich.Controllables;
+using UDT.Controllables;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Rich.Menus
+namespace UDT.Menus
 {
     public class MenuBase : ScriptableObject
     {

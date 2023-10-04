@@ -1,8 +1,8 @@
-﻿using Rich.DataContainers;
+﻿using UDT.DataContainers;
 using System.Collections.Generic;
 using UnityEngine.Audio;
 
-namespace Rich.Audio
+namespace UDT.Audio
 {
     public class AudioManagerData : Data
     {

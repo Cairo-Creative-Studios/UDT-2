@@ -7,7 +7,7 @@ using NaughtyAttributes;
 using UnityEditor;
 #endif
 
-namespace Rich.Scriptables
+namespace UDT.Scriptables
 {
     [Serializable]
     public class ScriptableObjectAsset
@@ -60,14 +60,7 @@ namespace Rich.Scriptables
 
         public virtual T GetScriptableAs<T>(bool convertType = false) where T : ScriptableObject
         {
-            if (convertType)
-            {
-                _type = typeof(T);
-                Verify();
-                return (T)scriptableObject;
-            }
-            else
-                return (T)scriptableObject;
+            return (T)scriptableObject;
         }
 
         private ScriptableObject CreateScriptableAsset(Type scriptableObjectType, string folderPath = "Assets/Temp")
@@ -89,8 +82,6 @@ namespace Rich.Scriptables
 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
-
-            EditorUtility.FocusProjectWindow();
 
             Selection.activeObject = asset;
 #endif

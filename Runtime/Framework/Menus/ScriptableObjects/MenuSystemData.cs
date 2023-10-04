@@ -1,7 +1,7 @@
-using Rich.DataContainers;
+using UDT.DataContainers;
 using UnityEngine.UIElements;
 
-namespace Rich.Menus
+namespace UDT.Menus
 {
     public sealed class MenuSystemData : Data
     {

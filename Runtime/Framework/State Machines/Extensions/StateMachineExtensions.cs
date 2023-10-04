@@ -3,7 +3,7 @@ using System.Linq;
 using System.Net.Sockets;
 using UnityEngine;
 
-namespace Rich.StateMachines
+namespace UDT.StateMachines
 {
     public static class StateMachineExtensions
     {

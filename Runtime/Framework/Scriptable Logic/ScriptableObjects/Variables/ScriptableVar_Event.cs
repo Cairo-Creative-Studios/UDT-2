@@ -1,8 +1,8 @@
 using UnityEngine;
-using Rich.Scriptables.Utilities;
-using Rich.Controllables;
+using UDT.Scriptables.Utilities;
+using UDT.Controllables;
 
-namespace Rich.Scriptables.Variables
+namespace UDT.Scriptables.Variables
 {
     [CreateAssetMenu(fileName = "New Event Variable", menuName = "Rich/Scriptable Logic/Variables/Event")]
     public sealed class ScriptableVar_Event : ScriptableVariable<ScriptableEvent>

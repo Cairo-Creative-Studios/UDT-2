@@ -1,12 +1,11 @@
-using Rich.DataContainers;
+using UDT.DataContainers;
 using UnityEngine;
 using System;
-using Rich.Extensions;
+using UDT.Extensions;
 using System.Text.RegularExpressions;
-using UnityEditor;
 using System.Reflection;
 
-namespace Rich.System
+namespace UDT.System
 {
     public sealed class Core : Singleton<Core, SystemData>
     {

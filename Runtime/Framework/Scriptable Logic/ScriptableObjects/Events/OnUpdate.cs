@@ -3,7 +3,7 @@ using UDT.Scriptables.Variables;
 
 namespace UDT.Scriptables.Events
 {
-    public class OnRuntimeStateExitted : ScriptableEvent<OnRuntimeStateExitted>
+    public class OnUpdate : ScriptableEvent<OnUpdate>
     {
         public override void OnInvoked(params object[] args)
         {
@@ -15,8 +15,6 @@ namespace UDT.Scriptables.Events
                 Event = this;
             else
                 Event.AddListener((object[] args) => Invoke(args));
-
-            parameters = new ScriptableVariable[] { new ScriptableVar_RuntimeState() };
         }
     }
 }

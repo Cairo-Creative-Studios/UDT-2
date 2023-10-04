@@ -1,7 +1,7 @@
 using UnityEngine;
-using Rich.DataContainers;
+using UDT.DataContainers;
 
-namespace Rich.DataPairedMonoBehaviour
+namespace UDT.DataPairedMonoBehaviour
 {
     public class PairedData<TThis, TMonoBehaviour> : Data where TMonoBehaviour : MonoBehaviour, IDataContainer<TThis> where TThis : Data
     {

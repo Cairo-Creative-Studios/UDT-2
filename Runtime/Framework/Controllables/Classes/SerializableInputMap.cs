@@ -1,12 +1,12 @@
 ﻿using MemoryPack;
-using Rich.Controllables.Extensions;
+using UDT.Controllables.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace Rich.Controllables.Serialized
+namespace UDT.Controllables.Serialized
 {
     public class SerializableInputMap
     {

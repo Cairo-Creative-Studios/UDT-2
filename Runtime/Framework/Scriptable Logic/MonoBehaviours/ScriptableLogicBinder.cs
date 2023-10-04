@@ -1,13 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Rich.Scriptables.Utilities;
+using UDT.Scriptables.Utilities;
 using System.Linq;
 using System;
 using System.Reflection;
 using NaughtyAttributes;
-using Rich.Menus;
+using UDT.Menus;
 
-namespace Rich.Scriptables
+namespace UDT.Scriptables
 {
     /// <summary>
     /// A MonoBehaviour that binds scriptable variables to their corresponding MonoBehaviour fields and subscribes to scriptable events.

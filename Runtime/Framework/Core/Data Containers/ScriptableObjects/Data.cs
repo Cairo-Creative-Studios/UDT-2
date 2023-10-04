@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Rich.DataContainers
+namespace UDT.DataContainers
 {
     public class Data : ScriptableObject
     {

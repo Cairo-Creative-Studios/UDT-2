@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Rich.Extensions;
-using Rich.System;
+using UDT.Extensions;
+using UDT.System;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
-namespace Rich.DynamicPostProcessing
+namespace UDT.DynamicPostProcessing
 {
     public class DynamicPostProcessingManager : Singleton<DynamicPostProcessingManager>
     {

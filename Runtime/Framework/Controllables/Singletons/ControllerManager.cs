@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using System.Linq;
 using UnityEngine.InputSystem;
-using Rich.System;
+using UDT.System;
 using System;
 
-namespace Rich.Controllables
+namespace UDT.Controllables
 {
     public sealed class ControllerManager : Singleton<ControllerManager, SystemData>
     {

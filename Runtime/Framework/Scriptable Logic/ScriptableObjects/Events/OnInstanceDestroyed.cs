@@ -1,7 +1,7 @@
-using Rich.Scriptables.Utilities;
-using Rich.Scriptables.Variables;
+using UDT.Scriptables.Utilities;
+using UDT.Scriptables.Variables;
 
-namespace Rich.Scriptables.Events
+namespace UDT.Scriptables.Events
 {
     public class OnInstanceDestroyed : ScriptableEvent<OnInstanceDestroyed>
     {

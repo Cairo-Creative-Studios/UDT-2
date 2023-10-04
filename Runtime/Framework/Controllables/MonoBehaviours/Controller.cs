@@ -2,15 +2,15 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Rich.Extensions;
+using UDT.Extensions;
 using UnityEngine.Events;
-using Rich.Controllables.Serialized;
-using Rich.Serialization;
+using UDT.Controllables.Serialized;
+using UDT.Serialization;
 using System;
-using Rich.Controllables.Extensions;
+using UDT.Controllables.Extensions;
 using UnityEngine.Windows;
 
-namespace Rich.Controllables
+namespace UDT.Controllables
 {
     public class Controller : MonoBehaviour
     {

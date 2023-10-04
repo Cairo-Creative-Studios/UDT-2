@@ -4,10 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
-using Rich.DataTypes;
+using UDT.DataTypes;
 using System.Linq;
 
-namespace Rich.Extensions
+namespace UDT.Extensions
 {
     public static class ReflectionExtension
     {

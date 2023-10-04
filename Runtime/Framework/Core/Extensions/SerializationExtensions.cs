@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Rich.Serialization
+namespace UDT.Serialization
 {
     public static class SerializationExtensions
     {

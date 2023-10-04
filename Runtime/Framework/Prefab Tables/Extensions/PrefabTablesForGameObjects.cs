@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Rich.PrefabTables
+namespace UDT.PrefabTables
 {
     public static class PrefabTablesForGameObjects
     {

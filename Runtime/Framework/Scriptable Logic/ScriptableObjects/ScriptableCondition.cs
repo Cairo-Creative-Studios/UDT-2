@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Rich.Scriptables.Utilities
+namespace UDT.Scriptables.Utilities
 {
     public class ScriptableCondition : ScriptableObject
     {

@@ -1,9 +1,9 @@
-using Rich.Extensions;
+using UDT.Extensions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using NaughtyAttributes;
 using UnityEngine.UIElements;
-using Rich.Scriptables;
+using UDT.Scriptables;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -11,7 +11,7 @@ using UnityEditor.SceneManagement;
 #endif
 
 
-namespace Rich.Streaming
+namespace UDT.Streaming
 {
     /// <summary>
     /// Allows you to Save/Load children of a GameObject as a Scene, so that it can be streamed in place of the object the StreamedSceneRoot is attached to.

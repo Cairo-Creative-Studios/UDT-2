@@ -1,16 +1,16 @@
-using Rich.DataContainers;
-using Rich.StateMachines;
-using Rich.ObjectPools;
-using Rich.PrefabTables;
+using UDT.DataContainers;
+using UDT.StateMachines;
+using UDT.ObjectPools;
+using UDT.PrefabTables;
 using UnityEngine;
-using Rich.Controllables;
-using Rich.Instances;
-using Rich.Menus;
-using Rich.Audio;
-using Rich.Scriptables;
-using Rich.Feedbacks;
+using UDT.Controllables;
+using UDT.Instances;
+using UDT.Menus;
+using UDT.Audio;
+using UDT.Scriptables;
+using UDT.Feedbacks;
 
-namespace Rich.System
+namespace UDT.System
 {
     public interface IRuntime
     {

@@ -1,8 +1,8 @@
 using System.Linq;
-using Rich.System;
+using UDT.System;
 using UnityEngine;
 
-namespace Rich.PrefabTables
+namespace UDT.PrefabTables
 {
     public sealed class PrefabTableManager : Singleton<PrefabTableManager>
     {

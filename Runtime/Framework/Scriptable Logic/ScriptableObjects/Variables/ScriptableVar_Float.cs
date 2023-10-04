@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using Rich.Scriptables.Utilities;
+using UDT.Scriptables.Utilities;
 
-namespace Rich.Scriptables.Variables
+namespace UDT.Scriptables.Variables
 {
     [CreateAssetMenu(fileName = "New Float Variable", menuName = "Rich/Scriptable Logic/Variables/Float")]
     public sealed class ScriptableVar_Float : ScriptableVariable<float>

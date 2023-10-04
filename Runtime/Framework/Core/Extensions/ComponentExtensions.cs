@@ -3,11 +3,10 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Rich.Extensions
+namespace UDT.Extensions
 {
     public static class ComponentExtensionss
     {

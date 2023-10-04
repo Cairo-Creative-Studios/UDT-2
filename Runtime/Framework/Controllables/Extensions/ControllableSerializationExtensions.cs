@@ -1,10 +1,10 @@
-﻿using Rich.Serialization;
+﻿using UDT.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-namespace Rich.Controllables.Extensions
+namespace UDT.Controllables.Extensions
 {
     public static class ControllableSerializationExtensions
     {
