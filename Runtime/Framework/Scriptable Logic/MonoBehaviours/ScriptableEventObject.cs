@@ -6,6 +6,11 @@ namespace UDT.Scriptables
     public class ScriptableEventObject : MonoBehaviour
     {
         [Expandable]
-        public ScriptableEventSheet sheet;
+        public EventGraph sheet;
+
+        void Awake()
+        {
+            sheet.This = gameObject;
+        }
     }
 }

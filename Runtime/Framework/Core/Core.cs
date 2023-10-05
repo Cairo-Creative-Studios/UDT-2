@@ -5,10 +5,15 @@ using UDT.Extensions;
 using System.Text.RegularExpressions;
 using System.Reflection;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace UDT.System
 {
     public sealed class Core : Singleton<Core, SystemData>
     {
+#if UNITY_EDITOR
         public static string CurrentProjectFolderPath
         {
             get
@@ -19,6 +24,7 @@ namespace UDT.System
                 return obj.ToString();
             }
         }
+#endif
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
         public static void Initialize(){

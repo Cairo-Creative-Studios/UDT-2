@@ -1,8 +1,9 @@
 using UnityEngine;
+using XNode;
 
 namespace UDT.Scriptables.Utilities
 {
-    public class ScriptableCondition : ScriptableObject
+    public class ScriptableCondition : ScriptableNode
     {
         public enum Operator
         {

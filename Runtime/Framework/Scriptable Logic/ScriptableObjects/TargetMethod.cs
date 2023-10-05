@@ -1,6 +1,7 @@
 using UDT.Scriptables.Utilities;
 using UDT.System;
 using System;
+using XNode;
 
 namespace UDT.Scriptables
 {
@@ -9,7 +10,7 @@ namespace UDT.Scriptables
     /// that are passed to the Search Function
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class TargetMethod<TMethod, TValue> where TMethod : TargetMethod<TMethod, TValue>, new()
+    public abstract class TargetMethod<TMethod, TValue> : Node where TMethod : TargetMethod<TMethod, TValue>, new()
     {
         private static TMethod _method;
         public static TMethod method

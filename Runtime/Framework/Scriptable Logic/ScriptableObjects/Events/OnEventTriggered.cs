@@ -11,6 +11,8 @@ namespace UDT.Scriptables.Events
 
         private void OnEnable()
         {
+            base.OnEnable();
+
             if (Event == null)
                 Event = this;
             else

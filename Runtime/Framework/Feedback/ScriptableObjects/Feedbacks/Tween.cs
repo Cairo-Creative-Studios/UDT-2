@@ -67,12 +67,12 @@ namespace UDT.Feedbacks
             switch (tweenMode)
             {
                 case TweeningMode.Linear:
-                    curve.ClearKeys();
+                    //curve.ClearKeys();
                     curve.AddKey(0f, 0f);
                     curve.AddKey(1f, 1f);
                     break;
                 case TweeningMode.EaseOut:
-                    curve.ClearKeys();
+                    //curve.ClearKeys();
 
                     curve.AddKey(new Keyframe(0, 0));
                     curve.AddKey(new Keyframe(1, 1));
@@ -80,7 +80,7 @@ namespace UDT.Feedbacks
                     curve.SmoothTangents(0, 0);
                     break;
                 case TweeningMode.EaseIn:
-                    curve.ClearKeys();
+                    // curve.ClearKeys();
 
                     curve.AddKey(new Keyframe(0, 0));
                     curve.AddKey(new Keyframe(1, 1));
@@ -88,14 +88,14 @@ namespace UDT.Feedbacks
                     curve.SmoothTangents(1, 0);
                     break;
                 case TweeningMode.EaseInOut:
-                    curve.ClearKeys();
+                    // curve.ClearKeys();
 
                     curve.AddKey(new Keyframe(0, 0));
                     curve.AddKey(new Keyframe(1, 1));
 
                     break;
                 case TweeningMode.EaseInElastic:
-                    curve.ClearKeys();
+                    // curve.ClearKeys();
 
                     curve.AddKey(new Keyframe(0, 0));
 
@@ -109,7 +109,7 @@ namespace UDT.Feedbacks
                     }
                     break;
                 case TweeningMode.EaseOutElastic:
-                    curve.ClearKeys();
+                    // curve.ClearKeys();
 
                     curve.AddKey(new Keyframe(1, 1));
 

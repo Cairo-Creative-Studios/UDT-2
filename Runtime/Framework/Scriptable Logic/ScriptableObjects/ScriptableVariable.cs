@@ -2,11 +2,14 @@
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using XNode;
 
 namespace UDT.Scriptables.Utilities
 {
-    public unsafe class ScriptableVariable : ScriptableObject, IScriptableVariableHook
+    [NodeTint("#2244aa")]
+    public class ScriptableVariable : Node, IScriptableVariableHook
     {
+        public string Name;
         public enum DataType
         {
             Field,
@@ -18,6 +21,7 @@ namespace UDT.Scriptables.Utilities
         /// </summary>
         protected Dictionary<object, List<(DataType, FieldInfo, PropertyInfo)>> _GetBinds = new();
         protected (object, DataType, FieldInfo, PropertyInfo) _SetBind;
+
         
         protected object _value;
 
@@ -146,9 +150,15 @@ namespace UDT.Scriptables.Utilities
             if(_value != newValue)
                 Value = newValue;
         }
+
+        void OnValidate()
+        {
+            name = $" {this.GetType().Name.Split("_")[1]}: { Name }";
+
+        }
     }
 
-    public unsafe class ScriptableVariable<T> : ScriptableVariable
+    public class ScriptableVariable<T> : ScriptableVariable
     {
         public new T Value 
         { 
@@ -179,6 +189,8 @@ namespace UDT.Scriptables.Utilities
 
         [SerializeProperty("Value", true)]
         public T value;
+        [Output] public T get;
+        [Input] public T set;
     }
 
     public interface IScriptableVariableHook

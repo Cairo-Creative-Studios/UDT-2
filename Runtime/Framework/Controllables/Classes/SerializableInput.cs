@@ -6,7 +6,7 @@ namespace UDT.Controllables.Serialized
 {
     [MemoryPackable]
     [Serializable]
-    public partial class SerializableInput
+    public partial class SerializableInput : UnityEngine.Object
     {
         public string map;
         public byte Value;

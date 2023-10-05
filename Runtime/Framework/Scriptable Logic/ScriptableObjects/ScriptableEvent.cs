@@ -6,15 +6,21 @@ using UDT.Scriptables.Events;
 using UDT.Scriptables.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
+using XNode;
 
 namespace UDT.Scriptables
 {
+    [NodeTint("#bb2255")]
     [Serializable]
-    public class ScriptableEvent : ScriptableObject, IScriptableEventHook
+    public class ScriptableEvent : ScriptableNode, IScriptableEventHook
     {
+        [HideInInspector]
         public bool This;
+        [HideInInspector]
         public UnityEvent<object[]> unityEvent = new();
+        [HideInInspector]
         public ScriptableVariable[] variables;
+        [HideInInspector]
         [Tooltip("Parameters that must have matching arguments passed to Invoke the Event (if no Parameters exist in this Array, it will be Invoked regardless of the Arguments passed.")]
         public ScriptableVariable[] parameters;
         public bool blocked = false;
