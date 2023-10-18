@@ -7,6 +7,7 @@ using UDT.DataTypes;
 using UDT.Controllables;
 using System.Collections.Generic;
 using System;
+using NaughtyAttributes;
 
 namespace UDT.Menus
 {
@@ -19,6 +20,28 @@ namespace UDT.Menus
     {
         public UnityEvent<MenuBase> OnMenuOpened;
         public UnityEvent<MenuBase> OnMenuClosed;
+
+        private static DropdownList<MenuBase> cachedMenuList;
+        public static DropdownList<MenuBase> MenusDropdownList
+        {
+            get
+            {
+                if (cachedMenuList == null)
+                {
+                    DropdownList<MenuBase> menus = new();
+
+                    foreach (var menu in Resources.LoadAll<MenuBase>("Menus"))
+                    {
+                        menus.Add(menu.name, menu);
+                    }
+
+                    cachedMenuList = menus;
+                    return menus;
+                }
+                else
+                    return cachedMenuList;
+            }
+        }
 
         /// <summary>
         /// Returns the Element at the given hierarchyIndex
@@ -89,13 +112,29 @@ namespace UDT.Menus
         }
 
         /// <summary>
-        /// Adds 
+        /// Adds the Menu with the given Type to the screen, appending it to the Parent if Parent is not Null.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="parent"></param>
         public static T OpenMenu<T>(MenuBase parent = null) where T : MenuBase
         {
             var menu = ScriptableObject.CreateInstance<T>();
+
+            var menuObject = new GameObject(menu.name);
+            menuObject.transform.SetParent(singleton.rootMenuObject.transform);
+            var menuController = menuObject.AddComponent<MenuHolder>();
+            menuController.menu = menu;
+            menu.menuController = menuController;
+
+            singleton.hierarchy.Add(menu, parent);
+            menu.OpenMenu();
+            singleton.OnMenuOpened.Invoke(menu);
+            return menu;
+        }
+
+        public static MenuBase OpenMenu(MenuBase menuToOpen, MenuBase parent = null)
+        {
+            var menu = ScriptableObject.Instantiate(menuToOpen);
 
             var menuObject = new GameObject(menu.name);
             menuObject.transform.SetParent(singleton.rootMenuObject.transform);

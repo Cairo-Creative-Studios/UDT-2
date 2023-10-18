@@ -1,13 +1,53 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using UDT.Scriptables.Events;
+using NaughtyAttributes;
+using UDT.StateMachines;
+using UDT.PrefabTables;
+using log4net.Core;
+using System.Linq;
 
 namespace UDT.Instances
 {
-    public sealed class Instance
+    [Serializable]
+    public sealed class Instance : IStateMachine
     {
-        public GameObject gameObject;
+        private static DropdownList<GameObject> cachedPrefabList;
+        public static DropdownList<GameObject> PrefabDropdownList
+        {
+            get
+            {
+                if (cachedPrefabList == null)
+                {
+                    DropdownList<UnityEngine.GameObject> prefabs = new()
+                    {
+                        { "None", null }
+                    };
+
+                    foreach (var prefab in Resources.LoadAll<UnityEngine.GameObject>("Objects"))
+                    {
+                        prefabs.Add(prefab.name, prefab);
+                    }
+
+                    cachedPrefabList = prefabs;
+
+                    return prefabs;
+                }
+                else
+                    return cachedPrefabList;
+            }
+        }
+
+        public Prefab Prefab;
+
+        public GameObject GameObject;
+        GameObject IStateMachine.gameObject => GameObject;
         public Transform transform;
+
+        private static int UIDCounter = 0;
+        private int _UID;
+        public int UID { get => _UID; private set => _UID = value; }
         private static List<Instance> instances = new();
         public static List<Instance> Instances { get => instances; }
 
@@ -325,26 +365,31 @@ namespace UDT.Instances
             }
         }
 
+
         public Instance(string name, Vector3 position = default, Quaternion rotation = default)
         {
-            gameObject = new GameObject(name);
+            GameObject = new GameObject(name);
             SetupInstance();
             transform.position = position;
             transform.rotation = rotation;
         }
 
-        public Instance(GameObject gameObject)
+        public Instance(Prefab prefab)
         {
-            this.gameObject = gameObject;
+            this.GameObject = GameObject.Instantiate(prefab.GameObject);
+            PrefabPools.AddToPool(prefab, this);
+            GameObject.name = prefab.GameObject.name + PrefabPools.PoolSize(prefab.GameObject);
             SetupInstance();
         }
 
+        public Instance(GameObject gameObject) : this(new Prefab(gameObject)) { }
+
         private void SetupInstance()
         {
-            transform = gameObject.transform;
+            transform = GameObject.transform;
 
-            rigidbody = gameObject.GetComponent<Rigidbody>();
-            characterController = gameObject.GetComponent<CharacterController>();
+            rigidbody = GameObject.GetComponent<Rigidbody>();
+            characterController = GameObject.GetComponent<CharacterController>();
 
             if (rigidbody != null)
             {
@@ -359,7 +404,10 @@ namespace UDT.Instances
                 motionController = MotionController.Basic;
             }
 
+            UID = UIDCounter++;
+
             instances.Add(this);
+            OnInstanceCreated.Invoke(this);
         }
 
         /// <summary>
@@ -367,9 +415,9 @@ namespace UDT.Instances
         /// </summary>
         /// <param name="gameObject"></param>
         /// <returns></returns>
-        public static Instance GetInstance(GameObject gameObject)
+        public static Instance GetAsInstance(GameObject gameObject)
         {
-            var existing = instances.Find(instance => instance.gameObject == gameObject);
+            var existing = instances.Find(instance => instance.GameObject == gameObject);
             if(existing != null)
             {
                 return existing;
@@ -379,6 +427,11 @@ namespace UDT.Instances
                 var newInstance = new Instance(gameObject);
                 return newInstance;
             }
+        }
+
+        public static Instance GetInstanceByUID(int UID)
+        {
+            return Instances.FirstOrDefault(x => x.UID == UID);
         }
 
         public T AddComponent<T>() where T : Component
@@ -398,7 +451,7 @@ namespace UDT.Instances
                 motionController = MotionController.Basic;
             }
 
-            return gameObject.AddComponent<T>();
+            return GameObject.AddComponent<T>();
         }
 
         public T AddComponent<T>(T component) where T : Component
@@ -408,7 +461,7 @@ namespace UDT.Instances
 
         public void RemoveComponent<T>() where T : Component
         {
-            Component.Destroy(gameObject.GetComponent<T>());
+            Component.Destroy(GameObject.GetComponent<T>());
         }
 
         public void RemoveComponent<T>(T component) where T : Component
@@ -418,8 +471,14 @@ namespace UDT.Instances
 
         public void Destroy()
         {
+            OnInstanceDestroyed.Invoke(this);
             instances.Remove(this);
-            GameObject.Destroy(gameObject);
+            GameObject.Destroy(GameObject);
+        }
+
+        public static void DestroyInstance(GameObject prefab, int IID)
+        {
+            PrefabPools.RemoveInstanceByIID(prefab, IID);
         }
     }
 }

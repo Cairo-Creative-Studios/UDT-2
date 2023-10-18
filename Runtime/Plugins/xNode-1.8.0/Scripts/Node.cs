@@ -107,10 +107,13 @@ namespace XNode {
         /// <summary> Iterate over all dynamic inputs on this node. </summary>
         public IEnumerable<NodePort> DynamicInputs { get { foreach (NodePort port in Ports) { if (port.IsDynamic && port.IsInput) yield return port; } } }
         /// <summary> Parent <see cref="NodeGraph"/> </summary>
+        [HideInInspector]
         [SerializeField] public NodeGraph graph;
         /// <summary> Position on the <see cref="NodeGraph"/> </summary>
+        [HideInInspector]
         [SerializeField] public Vector2 position;
         /// <summary> It is recommended not to modify these at hand. Instead, see <see cref="InputAttribute"/> and <see cref="OutputAttribute"/> </summary>
+        [HideInInspector]
         [SerializeField] private NodePortDictionary ports = new NodePortDictionary();
 
         /// <summary> Used during node instantiation to fix null/misconfigured graph during OnEnable/Init. Set it before instantiating a node. Will automatically be unset during OnEnable </summary>

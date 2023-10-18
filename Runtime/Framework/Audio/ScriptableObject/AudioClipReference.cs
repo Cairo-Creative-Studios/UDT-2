@@ -6,7 +6,7 @@ namespace UDT.Audio
     [CreateAssetMenu(fileName = "AudioClipReference", menuName = "Rich/Audio/AudioClipReference")]
     public class AudioClipReference : ScriptableObject
     {
-        public string name;
+        public string Name;
         public AudioClip clip;
         public AudioClipType type;
         [MinMaxSlider(0, 1)]

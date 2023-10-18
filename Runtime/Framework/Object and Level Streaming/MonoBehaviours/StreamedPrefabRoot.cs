@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UDT.Extensions;
 using UDT.Scriptables;
 using NaughtyAttributes;
@@ -25,7 +25,7 @@ namespace UDT.Streaming
 
     {
         [Tooltip("A Scriptable Event asset that can be used to make the Streamed Prefab Load")]
-        public ScriptableEvent loadEvent;
+        //public ScriptableEvent loadEvent;
 
         private GameObject _instance;
         [SerializeField] private GameObject prefab;

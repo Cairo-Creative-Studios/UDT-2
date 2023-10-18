@@ -1,6 +1,5 @@
 using UDT.DataContainers;
 using UDT.StateMachines;
-using UDT.ObjectPools;
 using UDT.PrefabTables;
 using UnityEngine;
 using UDT.Controllables;
@@ -8,7 +7,6 @@ using UDT.Instances;
 using UDT.Menus;
 using UDT.Audio;
 using UDT.Scriptables;
-using UDT.Feedbacks;
 
 namespace UDT.System
 {
@@ -35,14 +33,14 @@ namespace UDT.System
         /// <returns></returns>
         protected static Instance CreateInstance(string name)
         {
-            var gameObjectInstance = PrefabTableManager.InstantiatePrefab(name);
-            if(gameObjectInstance == null)
+            var prefab = PrefabTableManager.FindPrefab(name);
+            if(prefab == null)
             {
                 Debug.Log("The Prefab didn't exist in any Prefab Tables, so the Instance couldn't be created.", singleton);
                 return null;
             }
 
-            return new Instance(gameObjectInstance);
+            return new Instance(prefab);
         }
 
         /// <summary>
@@ -62,7 +60,7 @@ namespace UDT.System
         /// <returns></returns>
         protected static Instance GetNthInstance(string name, int n)
         {
-            return Instance.GetInstance(ObjectPoolManager.GetPool(name)[n]);
+            return PrefabPools.GetNthInstance(name, n);
         }
 
         /// <summary>
@@ -112,9 +110,9 @@ namespace UDT.System
         /// <typeparam name="T"></typeparam>
         /// <param name="parent"></param>
         /// <returns></returns>
-        protected static T OpenMenu<T>(MenuBase parent = null) where T : MenuBase
+        protected static TMenu OpenMenu<TMenu>(MenuBase parent = null) where TMenu : MenuBase
         {
-            return (T)MenuManager.OpenMenu<T>(parent);
+            return MenuManager.OpenMenu<TMenu>(parent);
         }
 
         /// <summary>
@@ -194,27 +192,6 @@ namespace UDT.System
         public static void Bind<TValue>(string variableName, BindMode bindMode, object instance, string fieldOrPropertyName)
         {
             ScriptableManager.Bind<TValue>(variableName, bindMode, instance, fieldOrPropertyName);
-        }
-
-        /// <summary>
-        /// Creates and Adds the Feedback with the given Type to this Game Object
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="gameObject"></param>
-        public static void AddFeedback<TFeedback>(GameObject gameObject) where TFeedback : Feedback
-        {
-            FeedbackManager.AddFeedback<TFeedback>(gameObject);
-        } 
-
-        /// <summary>
-        /// Gets the Nth Feedback with the given Type that has been added to the GameObject
-        /// </summary>
-        /// <typeparam name="TFeedback"></typeparam>
-        /// <param name="gameObject"></param>
-        /// <param name="nth"></param>
-        public static void GetFeedback<TFeedback>(GameObject gameObject, int nth) where TFeedback : Feedback
-        {
-            FeedbackManager.GetFeedback<TFeedback>(gameObject, nth);
         }
     }
 }

@@ -2,8 +2,13 @@ using UDT.DataContainers;
 using UnityEngine;
 using System;
 using UDT.Extensions;
-using System.Text.RegularExpressions;
 using System.Reflection;
+using UDT.Scriptables;
+using UDT.Scriptables.Events;
+using System.Collections.Generic;
+using UDT.StateMachines;
+using UDT.PrefabTables;
+using UDT.Instances;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -26,6 +31,15 @@ namespace UDT.System
         }
 #endif
 
+        private static List<IRuntime> runtimes = new();
+        public static List<IRuntime> Runtimes
+        {
+            get
+            {
+                return runtimes;
+            }
+        }
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
         public static void Initialize(){
             if(Data.startupMode == SystemData.StartupMode.InitManually)
@@ -36,6 +50,11 @@ namespace UDT.System
             
             singleton.GenerateData();
             singleton.GenerateRuntimes();
+
+            if(Data.EnableVisualScripting)
+            {
+                ScriptableManager.InstantiateSingleton();
+            }
         }
         
         void GenerateData(){     
@@ -53,8 +72,26 @@ namespace UDT.System
                 else{
                     // Create the Runtime Singleton Game Object
                     var runtimeSingleton = InstantiateSingleton(type);
+                    OnRuntimeStart.Invoke(runtimeTypes, runtimeSingleton);
                     Debug.Log("Created " + runtimeSingleton.gameObject.name);
+                    runtimes.Add(runtimeSingleton);
                 }
+            }
+        }
+
+        private void Update()
+        {
+            foreach(var runtime in runtimes)
+            {
+                var asStateMachine = ((IStateMachine)runtime);
+                if(asStateMachine.CurrentState != null)
+                    OnRuntimeStateUpdate.Invoke(asStateMachine.CurrentState, runtime);
+                OnRuntimeUpdate.Invoke(runtime);
+            }
+
+            foreach(var instance in Instance.Instances)
+            {
+                OnInstanceUpdate.Invoke(instance);
             }
         }
     }

@@ -29,4 +29,12 @@ namespace UDT.Controllables.Serialized
             this.referenceAction = referenceAction;
         }
     }
+
+    public class SerializableInput<T> : SerializableInput
+    {
+        public new T Value;
+
+        public SerializableInput(string map, InputAction referenceAction) : base(map, referenceAction)
+        { }
+    }
 }

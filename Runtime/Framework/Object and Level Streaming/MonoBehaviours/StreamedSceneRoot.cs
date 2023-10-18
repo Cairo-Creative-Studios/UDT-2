@@ -22,12 +22,10 @@ namespace UDT.Streaming
     {
         public Scene scene;
         [Tooltip("A Scriptable Event asset that can be used to make the Streamed Scene Load")]
-        public ScriptableEvent loadEvent;
+        // public ScriptableEvent loadEvent;
 
         void Awake()
         {
-            if(loadEvent != null)
-                loadEvent.AddListener(() => LoadScene());
         }
 
         [Button("Save as Scene")]

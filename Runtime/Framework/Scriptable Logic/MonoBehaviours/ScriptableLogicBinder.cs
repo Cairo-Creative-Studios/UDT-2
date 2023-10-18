@@ -27,7 +27,7 @@ namespace UDT.Scriptables
         {
             foreach (var subscription in scriptableEventSubscriptions)
             {
-                subscription.scriptableEvent.AddListener(() => subscription.methodName.Invoke(subscription.monoBehaviour, subscription.scriptableEvent.variables.Select(x => x.Value).ToArray()));
+                subscription.scriptableEvent.AddListener((object[] args) => subscription.methodName.Invoke(subscription.monoBehaviour, subscription.scriptableEvent.variables.Select(x => x.Value).ToArray()));
             }
         }
 
@@ -40,7 +40,7 @@ namespace UDT.Scriptables
             /// <summary>
             /// The scriptable event to subscribe to.
             /// </summary>
-            public ScriptableEvent scriptableEvent;
+            public EventNode scriptableEvent;
 
             /// <summary>
             /// The MonoBehaviour to bind the event to.

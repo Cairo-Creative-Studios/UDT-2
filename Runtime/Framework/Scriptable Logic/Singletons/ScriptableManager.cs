@@ -4,6 +4,10 @@ using UDT.Scriptables.Utilities;
 using UDT.System;
 using UnityEngine;
 using System;
+using JetBrains.Annotations;
+using NaughtyAttributes;
+using UDT.Instances;
+using UDT.Scriptables.Events;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -16,34 +20,53 @@ namespace UDT.Scriptables
     /// </summary>
     public class ScriptableManager : Singleton<ScriptableManager, SystemData>
     {
-        private static ScriptableVariable[] scriptableVariableResources;
-        private static ScriptableEvent[] scriptableEventResources;
-        private static Type[] scriptableEventTypes;
-        private static Type[] scriptableFunctionTypes;
-        private static Type[] scriptableVariableTypes;
-        private List<ScriptableVariable> scriptableVariableInstances = new();
+        private static VariableNode[] scriptableVariableResources;
+        private static List<EventGraph> eventGraphs = new();
+        private static DropdownList<EventGraph> cachedEventGraphDropdownList;
+        private static ScriptableEventObject[] scriptablePrefabs;
+        private static List<Timer> timers = new();
+
+        public static DropdownList<EventGraph> EventGraphDropdownList
+        {
+            get
+            {
+                if (cachedEventGraphDropdownList == null)
+                {
+                    DropdownList<EventGraph> graphs = new()
+                    {
+                        { "None", null }
+                    };
+
+                    foreach (var graph in Resources.LoadAll<EventGraph>(""))
+                    {
+                        graphs.Add(graph.name, graph);
+                    }
+
+                    cachedEventGraphDropdownList = graphs;
+
+                    return graphs;
+                }
+                else
+                    return cachedEventGraphDropdownList;
+            }
+        }
 
 
         void Awake()
         {
-            scriptableVariableResources = Resources.LoadAll<ScriptableVariable>("");
-            scriptableEventResources = Resources.LoadAll<ScriptableEvent>("");
+            scriptableVariableResources = Resources.LoadAll<VariableNode>("");
+            scriptablePrefabs = Resources.LoadAll<ScriptableEventObject>("");
 
-            scriptableVariableInstances.AddRange(scriptableVariableResources);
-
-            scriptableEventTypes = scriptableEventResources.Select(x => x.GetType()).ToArray();
-        }
-
-        void Update()
-        {
-            foreach(var variable in scriptableVariableInstances.ToArray())
+            foreach(var graph in eventGraphs)
             {
-                if(variable == null)
-                {
-                    scriptableVariableInstances.Remove(variable);
-                    continue;
-                }
-                variable.UpdateValues();
+                if (graph.Global)
+                    CreateEventSingleton(graph);
+            }
+
+            foreach(var scriptablePrefab in scriptablePrefabs)
+            {
+                if (scriptablePrefab.runtime)
+                    new Instance(scriptablePrefab.gameObject);
             }
         }
 
@@ -51,13 +74,12 @@ namespace UDT.Scriptables
         {
             InstantiateSingleton();
 
-            var variable = singleton.scriptableVariableInstances.FirstOrDefault(x => x.name == variableName);
+            var variable = scriptableVariableResources.FirstOrDefault(x => x.name == variableName);
             if(variable == null)
             {
                 Debug.LogWarning($"No Scriptable Variable with name {variableName} was found, a new one will be created.");
-                variable = ScriptableObject.CreateInstance<ScriptableVariable>();
+                variable = ScriptableObject.CreateInstance<VariableNode>();
                 variable.name = variableName;
-                singleton.scriptableVariableInstances.Add(variable);
             }
 
             if(mode == BindMode.Get)
@@ -100,6 +122,59 @@ namespace UDT.Scriptables
             }
 
             variable.UnbindAll(listener);
+        }
+
+        public static void AddEventGraph(EventGraph eventGraph)
+        {
+            eventGraphs.Add(eventGraph);
+        }
+
+        /// <summary>
+        /// Creates a Scriptable Event Singleton from the given Graph.
+        /// </summary>
+        /// <param name="eventGraph"></param>
+        public static void CreateEventSingleton(EventGraph eventGraph)
+        {
+            var gameObject = new GameObject("Event Singleton " + eventGraph.name);
+            gameObject.AddComponent<ScriptableEventObject>();
+            DontDestroyOnLoad(gameObject);
+        }
+
+        public static void StartTimer(string name, float duration)
+        {
+            timers.Add(new Timer(name, duration));
+        }
+
+        public static void StopTimer(string name)
+        {
+            var timer = timers.FirstOrDefault(x => x.name == name);
+            if(timer != null)
+            {
+                OnTimerEnded.Invoke(name);
+                timers.Remove(timers.FirstOrDefault(x => x.name == name));
+                return;
+            }
+            Debug.LogWarning("The Timer you attempted to stop, " + name + " does not exist.");
+        }
+
+        public static bool IsTimerRunning(string name)
+        {
+            var timer = timers.FirstOrDefault(x => x.name == name);
+            if (timer != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static float GetTimerStatus(string name)
+        {
+            var timer = timers.FirstOrDefault(x => x.name == name);
+            if (timer != null)
+            {
+                return Mathf.Clamp(timer.duration / timer.currentTime, 0, 1);
+            }
+            return -1;
         }
     }
     /// <summary>

@@ -5,11 +5,35 @@ using System.Linq;
 using UnityEngine.InputSystem;
 using UDT.System;
 using System;
+using NaughtyAttributes;
 
 namespace UDT.Controllables
 {
     public sealed class ControllerManager : Singleton<ControllerManager, SystemData>
     {
+        private static DropdownList<InputActionAsset> cachedInputActionAssetList;
+        public static DropdownList<InputActionAsset> InputActionAssetDropdownList
+        {
+            get
+            {
+                if (cachedInputActionAssetList == null)
+                {
+                    DropdownList<InputActionAsset> returnList = new();
+                    var actionAssets = Resources.LoadAll<InputActionAsset>("Input");
+
+                    foreach (var asset in actionAssets)
+                    {
+                        returnList.Add(asset.name, asset);
+                    }
+
+                    return returnList;
+                }
+                else
+                    return cachedInputActionAssetList;
+            }
+        }
+
+        public static Controller defaultController;
         private List<Controller> controllers = new();
         private Dictionary<IControllable, ControllableDefinition> controllables = new();
         private InputActionAsset[] inputActionAssets;
@@ -17,7 +41,7 @@ namespace UDT.Controllables
         void Awake()
         {
             inputActionAssets = Resources.LoadAll<InputActionAsset>("");
-            var defaultController = CreateController("default");
+            defaultController = CreateController("default");
 
             foreach(var inputAsset in inputActionAssets)
             {
@@ -30,8 +54,6 @@ namespace UDT.Controllables
                     }
                 }
             }
-
-
         }
 
         public static void AddControllable(IControllable controllable, string map)

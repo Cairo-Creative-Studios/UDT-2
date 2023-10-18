@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
+using UDT.Scriptables.Events;
 
 namespace UDT.Audio
 {
@@ -78,6 +79,8 @@ namespace UDT.Audio
                     
                     createdReference.clip = clip;
                     createdReference.name = clip.name;
+
+                    OnMusicPlay.Invoke(createdReference.clip, createdReference.name);
                     return Play(createdReference, tag, clipType);
                 }
             }
@@ -107,6 +110,8 @@ namespace UDT.Audio
             singleton.audioSources.Add((originalClipReference.name, type, tag), createdAudioSource);
 
             instancedClipReference.instantiatedAudioSource = createdAudioSource;
+            OnMusicPlay.Invoke(instancedClipReference.clip, instancedClipReference.name);
+
             return instancedClipReference;
         }
 

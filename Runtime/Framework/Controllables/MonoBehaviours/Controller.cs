@@ -9,6 +9,7 @@ using UDT.Serialization;
 using System;
 using UDT.Controllables.Extensions;
 using UnityEngine.Windows;
+using UDT.Controllables.Touch;
 
 namespace UDT.Controllables
 {
@@ -28,6 +29,15 @@ namespace UDT.Controllables
         private List<IControllable> possessingControllables = new();
         private UnityEvent<string, SerializableInput> OnControllerInput = new();
         private string map = "";
+        
+        public string TouchDeltaAction = "TouchDelta";
+        public string TouchAction = "Touch";
+
+        private float touchStartTime = 0;
+        private float touchEndTime = 0;
+        private Vector2 touchStartPosition;
+        private Vector2 touchPosition;
+        private Gesture.GestureType currentGesture;
 
         public void PossessControllable(IControllable controllable)
         {
@@ -144,13 +154,51 @@ namespace UDT.Controllables
 
         private void OnInput(InputAction.CallbackContext context)
         {
-
             if (inputActions[map].Contains(context.action))
             {
                 var serializableInput = inputMap.serializableInputActions.FirstOrDefault(x => x.referenceAction == context.action);
                 serializableInput.phase = context.phase;
                 serializableInput.Value = context.ReadValueAsObject().GetAsByte();
                 OnInput(serializableInput);
+
+            }
+
+            if (context.action.name == TouchDeltaAction)
+            {
+                touchPosition = context.action.ReadValue<Vector2>();
+            }
+
+            if(context.action.name == TouchAction)
+            {
+                switch(context.phase)
+                {
+                    case(InputActionPhase.Started):
+                        touchStartTime = Time.time;
+                        touchStartPosition = touchPosition;
+                        break;
+                    case(InputActionPhase.Performed):
+                        if(System.Core.Data.TouchDistanceForSwipe < Vector2.Distance(touchStartPosition, touchPosition))
+                        {
+                            currentGesture = Gesture.GestureType.Swipe;
+                        }
+                        break;
+                    case(InputActionPhase.Canceled):
+                        touchEndTime = Time.time;
+
+                        if(currentGesture != Gesture.GestureType.Swipe)
+                        {
+                            if((touchEndTime - touchStartTime) > System.Core.Data.LongPressTouchTime)
+                            {
+                                currentGesture = Gesture.GestureType.LongPress;
+                            }
+                            else
+                            {
+                                currentGesture = Gesture.GestureType.Tap;
+                            }
+                        }
+
+                        break;
+                }
             }
         }
 

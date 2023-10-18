@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
+using System.Runtime.CompilerServices;
+using UDT.Scriptables.Events;
+using UDT.System;
 using UnityEngine;
 
 namespace UDT.StateMachines
@@ -16,9 +19,16 @@ namespace UDT.StateMachines
         {
             if (stateMachine != null)
             {
-                if(stateMachine.stateReferences == null)
+                if (stateMachine.stateReferences == null)
                 {
                     ActivateStateMachine(stateMachine);
+                }
+
+                // If the State Machine object is a Runtime, call the corresponding Events
+                if (stateMachine.GetType().IsAssignableFrom(typeof(IRuntime)))
+                {
+                    OnRuntimeStateExitted.Invoke(stateMachine.CurrentState, stateMachine);
+                    OnRuntimeStateEntered.Invoke(nameof(TState), stateMachine);
                 }
 
                 StateMachineManager.SetState<TState>(stateMachine);
