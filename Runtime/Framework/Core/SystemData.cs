@@ -25,5 +25,7 @@ namespace UDT.System
 
         [BoxGroup("Input Settings")]
         public float TouchDistanceForSwipe = 5f;
+
+        public InputActionAsset tounchControlsAsset;
     }
 }

@@ -59,7 +59,6 @@ namespace UDT.Scriptables
 
         public void InitializeScript()
         {
-            
         }
 
         public void UpdateScript()

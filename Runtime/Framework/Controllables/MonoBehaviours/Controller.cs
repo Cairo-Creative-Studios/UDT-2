@@ -37,7 +37,12 @@ namespace UDT.Controllables
         private float touchEndTime = 0;
         private Vector2 touchStartPosition;
         private Vector2 touchPosition;
+        public Vector2 TouchPosition { get => touchPosition; }
         private Gesture.GestureType currentGesture;
+
+        public bool useForTouch = false;
+
+        public Action<Gesture> OnTouchGesture;
 
         public void PossessControllable(IControllable controllable)
         {
@@ -163,41 +168,49 @@ namespace UDT.Controllables
 
             }
 
-            if (context.action.name == TouchDeltaAction)
-            {
-                touchPosition = context.action.ReadValue<Vector2>();
-            }
 
-            if(context.action.name == TouchAction)
+            //Handle Touch Input
+            if (useForTouch)
             {
-                switch(context.phase)
+                if (context.action.name == TouchDeltaAction)
                 {
-                    case(InputActionPhase.Started):
-                        touchStartTime = Time.time;
-                        touchStartPosition = touchPosition;
-                        break;
-                    case(InputActionPhase.Performed):
-                        if(System.Core.Data.TouchDistanceForSwipe < Vector2.Distance(touchStartPosition, touchPosition))
-                        {
-                            currentGesture = Gesture.GestureType.Swipe;
-                        }
-                        break;
-                    case(InputActionPhase.Canceled):
-                        touchEndTime = Time.time;
+                    touchPosition = context.action.ReadValue<Vector2>();
+                }
 
-                        if(currentGesture != Gesture.GestureType.Swipe)
-                        {
-                            if((touchEndTime - touchStartTime) > System.Core.Data.LongPressTouchTime)
+                if(context.action.name == TouchAction)
+                {
+                    switch(context.phase)
+                    {
+                        case(InputActionPhase.Started):
+                            touchStartTime = Time.time;
+                            touchStartPosition = touchPosition;
+                            break;
+                        case(InputActionPhase.Performed):
+                            if(System.Core.Data.TouchDistanceForSwipe < Vector2.Distance(touchStartPosition, touchPosition))
                             {
-                                currentGesture = Gesture.GestureType.LongPress;
+                                currentGesture = Gesture.GestureType.Swipe;
+                                OnTouchGesture?.Invoke(new Gesture(currentGesture, System.Core.Data.TouchDistanceForSwipe - Vector2.Distance(touchStartPosition, touchPosition)));
                             }
-                            else
-                            {
-                                currentGesture = Gesture.GestureType.Tap;
-                            }
-                        }
+                            break;
+                        case(InputActionPhase.Canceled):
+                            touchEndTime = Time.time;
 
-                        break;
+                            if(currentGesture != Gesture.GestureType.Swipe)
+                            {
+                                if((touchEndTime - touchStartTime) > System.Core.Data.LongPressTouchTime)
+                                {
+                                    currentGesture = Gesture.GestureType.LongPress;
+                                    OnTouchGesture?.Invoke(new Gesture(currentGesture, 1.0f));
+                                }
+                                else
+                                {
+                                    currentGesture = Gesture.GestureType.Tap;
+                                    OnTouchGesture?.Invoke(new Gesture(currentGesture, 1.0f));
+                                }
+                            }
+
+                            break;
+                    }
                 }
             }
         }

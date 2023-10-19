@@ -33,7 +33,8 @@ namespace UDT.Controllables
             }
         }
 
-        public static Controller defaultController;
+        public static Controller DefaultController;
+        public static Controller TouchController;
         private List<Controller> controllers = new();
         private Dictionary<IControllable, ControllableDefinition> controllables = new();
         private InputActionAsset[] inputActionAssets;
@@ -41,17 +42,28 @@ namespace UDT.Controllables
         void Awake()
         {
             inputActionAssets = Resources.LoadAll<InputActionAsset>("");
-            defaultController = CreateController("default");
+            DefaultController = CreateController("default");
+            touchController = CreateController("Touch");
 
-            foreach(var inputAsset in inputActionAssets)
+            foreach (var inputAsset in inputActionAssets)
             {
                 foreach(var actionMap in inputAsset.actionMaps)
                 {
                     foreach(var action in actionMap.actions)
                     {
-                        defaultController.AddInputAction(action);
-                        controllers.Add(defaultController);
+                        DefaultController.AddInputAction(action);
+                        controllers.Add(DefaultController);
                     }
+                }
+            }
+
+            touchController.useForTouch = true;
+            foreach(var actionMap in Data.tounchControlsAsset.actionMaps)
+            {
+                foreach(var action in actionMap.actions)
+                {
+                    DefaultController.AddInputAction(action);
+                    controllers.Add(DefaultController);
                 }
             }
         }

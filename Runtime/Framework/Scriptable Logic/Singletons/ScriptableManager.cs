@@ -8,6 +8,7 @@ using JetBrains.Annotations;
 using NaughtyAttributes;
 using UDT.Instances;
 using UDT.Scriptables.Events;
+using UDT.Controllables;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -68,6 +69,8 @@ namespace UDT.Scriptables
                 if (scriptablePrefab.runtime)
                     new Instance(scriptablePrefab.gameObject);
             }
+
+            ControllerManager.TouchController.OnTouchGesture += ((gesture) => OnControllerGesture.Invoke(gesture));
         }
 
         public static void Bind<T>(string variableName, BindMode mode, object listener, string fieldOrPropertyName)

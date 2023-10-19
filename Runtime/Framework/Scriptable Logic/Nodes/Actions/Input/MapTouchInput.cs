@@ -13,7 +13,7 @@ namespace UDT.Scriptables.Actions
 
 		public override void Process()
 		{
-			var controller = ControllerManager.defaultController;
+			var controller = ControllerManager.DefaultController;
 			base.Process();
 		}
 	}

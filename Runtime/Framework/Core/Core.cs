@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using UDT.StateMachines;
 using UDT.PrefabTables;
 using UDT.Instances;
+using UDT.Controllables;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -51,6 +52,7 @@ namespace UDT.System
             singleton.GenerateData();
             singleton.GenerateRuntimes();
 
+            ControllerManager.InstantiateSingleton();
             if(Data.EnableVisualScripting)
             {
                 ScriptableManager.InstantiateSingleton();
