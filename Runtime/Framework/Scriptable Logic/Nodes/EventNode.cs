@@ -13,7 +13,7 @@ namespace UDT.Scriptables
     [Serializable]
     public abstract class EventNode : SequenceNode, IScriptableEventHook
     {
-        [Output(backingValue = Node.ShowBackingValue.Never, dynamicPortList = true)] public new List<SequencePort> output;
+        [Output(backingValue = Node.ShowBackingValue.Never)] public new List<SequencePort> output;
         [HideInInspector]
         public UnityEvent<object[]> unityEvent = new();
         [HideInInspector]

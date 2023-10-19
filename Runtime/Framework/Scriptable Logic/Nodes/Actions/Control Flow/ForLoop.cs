@@ -7,9 +7,9 @@ namespace UDT.Scriptables.Actions
 {
 	public class ForLoop : ActionNode
 	{
-		[Input] public Variables.Int Start;
-		[Input] public Variables.Int End;
-		[Output] public Variables.Int Index;
+		[Input (backingValue = ShowBackingValue.Unconnected)] public Variables.Int Start;
+		[Input (backingValue = ShowBackingValue.Unconnected)] public Variables.Int End;
+		[Output (backingValue = ShowBackingValue.Unconnected)] public Variables.Int Index;
 
 		public override void Process()
 		{

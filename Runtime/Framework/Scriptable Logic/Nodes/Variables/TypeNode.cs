@@ -1,6 +1,4 @@
-using UnityEngine;
 using UDT.Scriptables.Utilities;
-using XNode;
 using System;
 
 namespace UDT.Scriptables.Variables

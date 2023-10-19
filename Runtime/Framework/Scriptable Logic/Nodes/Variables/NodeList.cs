@@ -1,9 +1,7 @@
 using System;
 using UnityEngine;
 using UDT.Scriptables.Utilities;
-using UDT.Instances;
 using System.Collections.Generic;
-using XNode;
 
 // TODO: List construction might rely heavily on programmtically handling port connections. 
 // If it's not working, that's probably why
@@ -14,7 +12,7 @@ namespace UDT.Scriptables.Variables
 
     public class NodeList<T> : NodeList
     {
-        [Input] public List<VariableNode> Items;
+        [Input(dynamicPortList = true)] public List<VariableNode> Items;
         public Type type = typeof(T);
 
         new void OnValidate()

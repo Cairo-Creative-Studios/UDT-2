@@ -60,6 +60,7 @@ namespace UDT.Instances
         private MotionController motionController = MotionController.Rigidbody;
         private Rigidbody rigidbody;
         private CharacterController characterController;
+        private Collider collider; 
         private Vector3 _speed;
         private Vector3 _acceleration;
         private Vector3 _direction;
@@ -390,6 +391,16 @@ namespace UDT.Instances
 
             rigidbody = GameObject.GetComponent<Rigidbody>();
             characterController = GameObject.GetComponent<CharacterController>();
+
+            if(rigidbody == null && characterController == null)
+            {
+                rigidbody = GameObject.GetComponentInChildren<Rigidbody>();
+                if (rigidbody == null) characterController = GameObject.GetComponentInChildren<CharacterController>();
+            }
+
+            collider = GameObject.GetComponent<Collider>();
+            if (collider == null) collider = GameObject.GetComponentInChildren<Collider>();
+            if (collider != null) GameObject.AddComponent<CollisionEventTracker>();
 
             if (rigidbody != null)
             {

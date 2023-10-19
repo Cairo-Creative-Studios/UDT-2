@@ -7,7 +7,7 @@ namespace UDT.Scriptables.Actions
 	public class ForEachLoop : ActionNode
 	{
 		[Input] public Variables.NodeList list;
-		[Output] public Variables.GenericObject currentItem;
+		[Output (backingValue = ShowBackingValue.Unconnected)] public Variables.GenericObject currentItem;
 
 		public override void Process()
 		{
