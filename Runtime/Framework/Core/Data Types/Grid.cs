@@ -12,6 +12,11 @@ public class Grid<T> : ItemCollection<GridNode<T>>
         get => this[x + y * width];
         set => this[x + y * width] = value;
     }
+    public GridNode<T> this[(int, int) tuple]
+    {
+        get => this[tuple.Item1 + tuple.Item2 * width];
+        set => this[tuple.Item1 + tuple.Item2 * width] = value;
+    }
     public UnityEvent<T> OnItemMoved = new();
 
     public int width { get => _width; private set => _width = value; }
@@ -95,6 +100,17 @@ public class Grid<T> : ItemCollection<GridNode<T>>
         }
         return (-1, -1);
     }
+    public (int x, int y) GetPositionOf(GridNode<T> node)
+    {
+        for (int i = 0; i < Count; i++)
+        {
+            if (this[i] == node)
+            {
+                return (i % width, i / width);
+            }
+        }
+        return (-1, -1);
+    }
 
     public GridNode<T>[] GetRow(int y)
     {
@@ -133,18 +149,29 @@ public class Grid<T> : ItemCollection<GridNode<T>>
         return nodes.ToArray();
     }
 
-    public GridNode<T>[] GetAdjacentNodes(GridNode<T> node)
+    public GridNode<T>[] GetAdjacentNodes(GridNode<T> node, bool wrap = false)
     {
         List<GridNode<T>> nodes = new();
 
         if (node.x > 0)
             nodes.Add(this[node.x - 1, node.y]);
+        else if(wrap)
+            nodes.Add(this[width - 1, node.y]);
+
         if (node.x < width - 1)
             nodes.Add(this[node.x + 1, node.y]);
+        else if(wrap)
+            nodes.Add(this[0, node.y]);
+
         if (node.y > 0)
             nodes.Add(this[node.x, node.y - 1]);
+        else if (wrap)
+            nodes.Add(this[node.x, height - 1]);
+
         if (node.y < height - 1)
             nodes.Add(this[node.x, node.y + 1]);
+        else if(wrap)
+            nodes.Add(this[node.x, 0]);
 
         return nodes.ToArray();
     }

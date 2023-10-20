@@ -9,7 +9,7 @@ namespace UDT.Scriptables.Conditions
         [Input] public VariableNode variable;
         protected override bool OnCheck()
         {
-            return variable.Value == true;
+            return ((bool)variable.Value);
         }
     }
 }

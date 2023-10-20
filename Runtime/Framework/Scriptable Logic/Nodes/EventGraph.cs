@@ -57,11 +57,11 @@ namespace UDT.Scriptables
             ScriptableManager.AddEventGraph(this);
         }
 
-        public void InitializeScript()
+        public virtual void InitializeScript()
         {
         }
 
-        public void UpdateScript()
+        public virtual void UpdateScript()
         {
         }
         

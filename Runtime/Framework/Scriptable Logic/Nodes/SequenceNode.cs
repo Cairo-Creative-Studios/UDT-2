@@ -7,8 +7,8 @@ namespace UDT.Scriptables.Utilities
 {
     public class SequenceNode : Node
     {
-        [HideInInspector] public SequencePort input;
-        [HideInInspector] public List<SequencePort> output;
+        [HideInInspector] public SequenceNode input;
+        [HideInInspector] public List<SequenceNode> output;
         [HideInInspector] public MasterNode masterNode;
         [Input] public List<ParameterNode> parameters;
         public new EventGraph graph;
@@ -38,7 +38,7 @@ namespace UDT.Scriptables.Utilities
 
         protected void ProcessChildren()
         {
-            foreach(var child in output.Select(x => x.node).OfType<SequenceNode>())
+            foreach(var child in output.Select(x => x.output).OfType<SequenceNode>())
             {
                 child.Process();
             }

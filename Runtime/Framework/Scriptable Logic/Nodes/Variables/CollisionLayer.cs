@@ -20,7 +20,7 @@ namespace UDT.Scriptables.Variables
             int index = 0;
             while(layerName.Length !> 0)
             {
-                layerName = LayerMask.LayerToName(index);
+                layerName = UnityEngine.LayerMask.LayerToName(index);
                 returnList.Add(layerName, index);
                 index++;
             }

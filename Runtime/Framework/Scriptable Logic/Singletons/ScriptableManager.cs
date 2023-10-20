@@ -136,11 +136,13 @@ namespace UDT.Scriptables
         /// Creates a Scriptable Event Singleton from the given Graph.
         /// </summary>
         /// <param name="eventGraph"></param>
-        public static void CreateEventSingleton(EventGraph eventGraph)
+        public static ScriptableEventObject CreateEventSingleton(EventGraph eventGraph)
         {
             var gameObject = new GameObject("Event Singleton " + eventGraph.name);
-            gameObject.AddComponent<ScriptableEventObject>();
+            var eventObject = gameObject.AddComponent<ScriptableEventObject>();
+            eventObject.AddScript(Instantiate(eventGraph));
             DontDestroyOnLoad(gameObject);
+            return eventObject;
         }
 
         public static void StartTimer(string name, float duration)

@@ -7,8 +7,8 @@ namespace UDT.Scriptables.Utilities
     [NodeTint("#655ADB")]
     public class ConditionNode : SequenceNode
     {
-        [Input(backingValue = Node.ShowBackingValue.Never)] public new SequencePort input;
-        [Output(backingValue = Node.ShowBackingValue.Never, dynamicPortList = true)] public new List<SequencePort> output;
+        [Input(backingValue = Node.ShowBackingValue.Never)] public new SequenceNode input;
+        [Output(backingValue = Node.ShowBackingValue.Never, dynamicPortList = true)] public new List<SequenceNode> output;
         
         public bool Invert;
         public object value;

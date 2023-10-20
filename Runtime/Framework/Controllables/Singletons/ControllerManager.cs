@@ -43,7 +43,7 @@ namespace UDT.Controllables
         {
             inputActionAssets = Resources.LoadAll<InputActionAsset>("");
             DefaultController = CreateController("default");
-            touchController = CreateController("Touch");
+            TouchController = CreateController("Touch");
 
             foreach (var inputAsset in inputActionAssets)
             {
@@ -57,7 +57,7 @@ namespace UDT.Controllables
                 }
             }
 
-            touchController.useForTouch = true;
+            TouchController.useForTouch = true;
             foreach(var actionMap in Data.tounchControlsAsset.actionMaps)
             {
                 foreach(var action in actionMap.actions)

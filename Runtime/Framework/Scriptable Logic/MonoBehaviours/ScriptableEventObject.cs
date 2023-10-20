@@ -4,6 +4,7 @@ using UnityEngine;
 using UDT.Instances;
 using UDT.StateMachines;
 using System;
+using System.Linq;
 
 namespace UDT.Scriptables
 {
@@ -57,6 +58,14 @@ namespace UDT.Scriptables
             }
         }
 
+        private void Update()
+        {
+            foreach(var graphReference in currentState.scripts)
+            {
+                graphReference.graph.UpdateScript();
+            }
+        }
+
         public void SetStateHierarchyPath(string statePath)
         {
             var states = statePath.Split('/');
@@ -78,6 +87,16 @@ namespace UDT.Scriptables
         public void AddState(string stateName)
         {
             stateHierarchy.Add(stateName, new());
+        }
+
+        public void AddScript(EventGraph eventGraph)
+        {
+            if (stateHierarchy.Keys.Count() < 1)
+                AddState("Default");
+            if (currentState == null)
+                currentState = stateHierarchy[stateHierarchy.Keys.ToArray()[0]];
+
+            currentState.AddScript(eventGraph);
         }
 
         [Serializable]
