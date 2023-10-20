@@ -21,8 +21,9 @@ namespace UDT.Scriptables
         public List<InstanceEventNode> thisInstanceEventNodes;
         private List<OnUpdate> updateNodes = new();
         private MasterNode masterNode;
+        public List<Enum> enums = new();
 
-        void OnValidate()
+        public void OnValidate()
         {
             updateNodes = new();
 
