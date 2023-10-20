@@ -1,6 +1,6 @@
 namespace UDT.Scriptables.Events
 {
-    [CreateNodeMenu("Events/Instances/On Instance Trigger Entered")]
+    [CreateNodeMenu("Collisions/Events/On Instance Trigger Entered")]
     public class OnInstanceTriggerEntered : InstanceEventNode<OnInstanceTriggerEntered>
     {
         [Output] public Variables.Collider collider;

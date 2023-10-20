@@ -1,6 +1,6 @@
 namespace UDT.Scriptables.Events
 {
-    [CreateNodeMenu("Events/Generic/On Event Triggered")]
+    [CreateNodeMenu("On Event Triggered")]
     public class OnEventTriggered : EventNode<OnEventTriggered>
     {
         public override void OnInvoked(params object[] args)

@@ -2,7 +2,7 @@
     "name": "com.cairo.udt2",
     "displayName": "Unity Development Toolkit",
     "version": "2.0.0",
-    "unity": "2022.3.4f",
+    "unity": "2022.3",
     "description": "A comprehensive collection of practices and tools designed to streamline and enhance the game development process within the Unity engine.",
     "keywords": [
         "unity",

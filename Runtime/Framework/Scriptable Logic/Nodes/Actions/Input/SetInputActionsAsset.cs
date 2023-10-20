@@ -1,13 +1,13 @@
 using UnityEngine.InputSystem;
 using UDT.Scriptables.Utilities;
 using NaughtyAttributes;
-using XNode;
 using UDT.Controllables;
 using UnityEngine;
 
 namespace UDT.Scriptables.Actions
 {
-	public class SetInputActionsAsset : ActionNode
+    [CreateNodeMenu("Input/Actions/Set Controller's Input Action Asset")]
+    public class SetInputActionsAsset : ActionNode
 	{
 		[Input] public Controller controller;
 		[Dropdown("GetInputActionAssets")]

@@ -1,10 +1,10 @@
 using UDT.Scriptables.Utilities;
 using UDT.Controllables;
-using UDT.Scriptables.Variables;
 using UnityEngine;
 
 namespace UDT.Scriptables.Actions
 {
+    [CreateNodeMenu("Input/Actions/Get Pointer World Position")]
     public class GetPointerWorldPosition : ActionNode
     {
         [Input(backingValue = ShowBackingValue.Unconnected)] public float depth;

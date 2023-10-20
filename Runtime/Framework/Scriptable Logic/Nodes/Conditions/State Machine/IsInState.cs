@@ -6,7 +6,7 @@ using UDT.StateMachines;
 
 namespace UDT.Scriptables.Conditions
 {
-    [CreateNodeMenu("Conditions/State Machine/Compare Field")]
+    [CreateNodeMenu("State Machine/Conditions/Compare Field")]
     public class IsInState : ConditionNode
     {
         [Input] public Runtime runtime;

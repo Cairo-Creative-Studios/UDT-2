@@ -3,7 +3,7 @@ using UDT.Scriptables.Variables;
 
 namespace UDT.Scriptables.Conditions
 {
-    [CreateNodeMenu("Conditions/Timing/Is Timer Running")]
+    [CreateNodeMenu("Timing/Conditions/Is Timer Running")]
     public class IsTimerRunning : ConditionNode
     {
         [Input(backingValue = ShowBackingValue.Unconnected)] public String timerName;

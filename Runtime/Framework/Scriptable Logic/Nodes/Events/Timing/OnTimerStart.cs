@@ -1,7 +1,7 @@
 
 namespace UDT.Scriptables.Events
 {
-    [CreateNodeMenu("Events/Timing/On Timer Started")]
+    [CreateNodeMenu("Timing/Events/On Timer Started")]
     public class OnTimerStarted : EventNode<OnTimerStarted>
     {
         [Output] public Variables.Runtime runtime;

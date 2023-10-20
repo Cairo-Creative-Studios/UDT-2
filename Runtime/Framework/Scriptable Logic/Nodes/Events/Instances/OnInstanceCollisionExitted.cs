@@ -1,6 +1,6 @@
 namespace UDT.Scriptables.Events
 {
-    [CreateNodeMenu("Events/Instances/On Instance Collision Exitted")]
+    [CreateNodeMenu("Collisions/Events/On Instance Collision Exitted")]
     public class OnInstanceCollisionExitted : InstanceEventNode<OnInstanceCollisionExitted>
     {
         [Output] public Variables.CollisionInfo collisionInfo;

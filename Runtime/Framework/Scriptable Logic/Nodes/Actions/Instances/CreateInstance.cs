@@ -5,7 +5,8 @@ using UnityEngine;
 
 namespace UDT.Scriptables.Actions
 {
-	public class CreateInstance : ActionNode
+    [CreateNodeMenu("Instances/Actions/Create Instance")]
+    public class CreateInstance : ActionNode
 	{
 		[Tooltip("If left blank, the Instances name will be the same as the prefab + it's Instance ID")]
 		public string instanceName = "";

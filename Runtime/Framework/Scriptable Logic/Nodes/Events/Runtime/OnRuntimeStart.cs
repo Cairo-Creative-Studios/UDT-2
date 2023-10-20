@@ -1,7 +1,7 @@
 
 namespace UDT.Scriptables.Events
 {
-    [CreateNodeMenu("Events/Runtime/On Runtime Started")]
+    [CreateNodeMenu("Runtime/Events/On Runtime Started")]
     public class OnRuntimeStart : EventNode<OnRuntimeStart>
     {
         [Output] public Variables.Runtime runtime;  

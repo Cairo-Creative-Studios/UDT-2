@@ -1,13 +1,10 @@
 using UDT.Scriptables.Utilities;
-using System;
 using NaughtyAttributes;
 using UDT.Scriptables.Variables;
-using Codice.CM.WorkspaceServer.Tree;
-using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace UDT.Scriptables.Conditions
 {
-    [CreateNodeMenu("Conditions/Compare Field")]
+    [CreateNodeMenu("Arithmetic/Conditions/Compare Int")]
     public class CompareInt : ConditionNode
     {
         public enum Operation

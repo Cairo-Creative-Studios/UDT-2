@@ -1,10 +1,10 @@
 using UDT.Scriptables.Utilities;
 using NaughtyAttributes;
-using UnityEngine;
 using UDT.Menus;
 
 namespace UDT.Scriptables.Actions
 {
+    [CreateNodeMenu("Menus/Actions/Show Menu")]
     public class ShowMenu : ActionNode
     {
         [Dropdown("GetMenus")]

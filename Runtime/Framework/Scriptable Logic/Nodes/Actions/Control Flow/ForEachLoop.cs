@@ -1,10 +1,9 @@
-using UnityEngine.InputSystem;
 using UDT.Scriptables.Utilities;
-using NaughtyAttributes;
 
 namespace UDT.Scriptables.Actions
 {
-	public class ForEachLoop : ActionNode
+    [CreateNodeMenu("For Each")]
+    public class ForEachLoop : ActionNode
 	{
 		[Input] public Variables.NodeList list;
 		[Output (backingValue = ShowBackingValue.Unconnected)] public Variables.GenericObject currentItem;

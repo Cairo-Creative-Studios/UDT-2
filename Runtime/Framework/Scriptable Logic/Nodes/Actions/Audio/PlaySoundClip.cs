@@ -1,12 +1,11 @@
-using UnityEngine.InputSystem;
 using UDT.Scriptables.Utilities;
-using UDT.Controllables;
 using NaughtyAttributes;
 using UnityEngine;
 using UDT.Audio;
 
 namespace UDT.Scriptables.Actions
 {
+    [CreateNodeMenu("Audio/Actions/Play Sound Clip")]
     public class PlaySoundClip : ActionNode
     {
         [Dropdown("GetSoundClips")]

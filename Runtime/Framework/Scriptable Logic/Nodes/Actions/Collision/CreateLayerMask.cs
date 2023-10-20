@@ -4,6 +4,7 @@ using UDT.Scriptables.Variables;
 
 namespace UDT.Scriptables.Actions
 {
+    [CreateNodeMenu("Collision/Collision/Create Layer Mask")]
     public class CreateLayerMask : ActionNode
     {
         [Input(dynamicPortList = true)] public List<int> layers = new();

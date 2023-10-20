@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 namespace UDT.Scriptables.Events
 {
-    [CreateNodeMenu("Events/Instances/On Instance Created")]
+    [CreateNodeMenu("Menus/Events/On Menu Event Callback")]
     public class OnMenuEvent : EventNode<OnMenuEvent>
     {
         private List<string> events = new List<string>()

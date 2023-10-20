@@ -1,6 +1,6 @@
 namespace UDT.Scriptables.Events
 {
-    [CreateNodeMenu("Events/Instances/On Instance Created")]
+    [CreateNodeMenu("Instances/Events/On Instance Created")]
     public class OnInstanceCreated : InstanceEventNode<OnInstanceCreated>
     {
         public override void OnInvoked(params object[] args)

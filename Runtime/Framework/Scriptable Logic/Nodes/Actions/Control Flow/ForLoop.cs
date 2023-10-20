@@ -1,11 +1,9 @@
-using UnityEngine.InputSystem;
 using UDT.Scriptables.Utilities;
-using NaughtyAttributes;
-using XNode;
 
 namespace UDT.Scriptables.Actions
 {
-	public class ForLoop : ActionNode
+    [CreateNodeMenu("For")]
+    public class ForLoop : ActionNode
 	{
 		[Input (backingValue = ShowBackingValue.Unconnected)] public Variables.Int Start;
 		[Input (backingValue = ShowBackingValue.Unconnected)] public Variables.Int End;

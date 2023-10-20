@@ -1,10 +1,7 @@
-using UDT.Scriptables.Utilities;
-using UDT.Scriptables.Variables;
-using XNode;
 
 namespace UDT.Scriptables.Events
 {
-    [CreateNodeMenu("Events/Runtime/On Runtime State Entered")]
+    [CreateNodeMenu("Runtime/Events/On Runtime State Entered")]
     public class OnRuntimeStateEntered : EventNode<OnRuntimeStateEntered>
     {
         [Output] public Variables.Runtime runtime;

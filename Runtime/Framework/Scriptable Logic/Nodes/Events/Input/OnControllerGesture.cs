@@ -1,6 +1,6 @@
 namespace UDT.Scriptables.Events
 {
-    [CreateNodeMenu("Events/Input/On Controller Gesture")]
+    [CreateNodeMenu("Input/Events/On Controller Gesture")]
     public class OnControllerGesture : EventNode<OnControllerGesture> 
     {
         [Output] public Variables.InputAction inputAction;

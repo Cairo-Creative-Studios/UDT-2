@@ -1,12 +1,11 @@
-using UnityEngine.InputSystem;
 using UDT.Scriptables.Utilities;
 using NaughtyAttributes;
-using XNode;
 using UDT.Controllables;
 
 namespace UDT.Scriptables.Actions
 {
-	public class SetInputMap : ActionNode
+    [CreateNodeMenu("Input/Actions/Set Controller's Current Input Map")]
+    public class SetInputMap : ActionNode
 	{
 		[Input] public Controller controller;
 		[Dropdown("GetControllersMaps")]

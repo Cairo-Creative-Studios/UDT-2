@@ -6,7 +6,7 @@ using NaughtyAttributes;
 
 namespace UDT.Scriptables.Events
 {
-    [CreateNodeMenu("Events/Audio/On Music Stop")]
+    [CreateNodeMenu("Audio/Events/On Music Stop")]
     public class OnMusicStop : EventNode<OnMusicStop>
     {
         [Output] public Variables.AudioClip audioClip;  

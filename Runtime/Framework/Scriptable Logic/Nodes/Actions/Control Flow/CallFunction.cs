@@ -1,11 +1,8 @@
-using UnityEngine.InputSystem;
 using UDT.Scriptables.Utilities;
-using UDT.Controllables;
-using NaughtyAttributes;
-using System.Collections.Generic;
 
 namespace UDT.Scriptables.Actions
 {
+    [CreateNodeMenu("Call Function")]
     public class CallFunction : ActionNode
     {
         public FunctionGraph function;

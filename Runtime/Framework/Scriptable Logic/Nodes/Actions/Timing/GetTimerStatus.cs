@@ -6,6 +6,7 @@ namespace UDT.Scriptables.Actions
     /// <summary>
     /// Gets the Main Runtime of the Game
     /// </summary>
+    [CreateNodeMenu("Timers/Actions/Get Timer Status")]
     public class GetTimerStatus : ActionNode
     {
         [Input(backingValue = ShowBackingValue.Unconnected)] public String Name;

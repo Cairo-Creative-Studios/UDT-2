@@ -1,10 +1,7 @@
-using UDT.Scriptables.Utilities;
-using UDT.Scriptables.Variables;
-using XNode;
 
 namespace UDT.Scriptables.Events
 {
-    [CreateNodeMenu("Events/Runtime/On Runtime Exitted")]
+    [CreateNodeMenu("Runtime/Events/On Runtime Exitted")]
     public class OnRuntimeStateExitted : EventNode<OnRuntimeStateExitted>
     {
         [Output] public Variables.Runtime runtime;

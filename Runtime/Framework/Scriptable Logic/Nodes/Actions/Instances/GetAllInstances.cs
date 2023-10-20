@@ -5,7 +5,8 @@ using UDT.PrefabTables;
 
 namespace UDT.Scriptables.Actions
 {
-	public class GetAllInstances : ActionNode
+    [CreateNodeMenu("Instances/Actions/Get All Instances of Prefab")]
+    public class GetAllInstances : ActionNode
 	{
 		[Dropdown("GetPrefabs")]
 		public UnityEngine.GameObject prefab;

@@ -1,6 +1,6 @@
 namespace UDT.Scriptables.Events
 {
-    [CreateNodeMenu("Events/Instances/On Instance Update")]
+    [CreateNodeMenu("Instances/Events/On Instance Update")]
     public class OnInstanceUpdate : InstanceEventNode<OnInstanceUpdate>
     {
         

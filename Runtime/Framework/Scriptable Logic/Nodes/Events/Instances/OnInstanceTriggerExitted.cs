@@ -1,6 +1,6 @@
 namespace UDT.Scriptables.Events
 {
-    [CreateNodeMenu("Events/Instances/On Instance Trigger Exitted")]
+    [CreateNodeMenu("Collisions/Events/On Instance Trigger Exitted")]
     public class OnInstanceTriggerExitted : InstanceEventNode<OnInstanceTriggerExitted>
     {
         [Output] public Variables.Collider collider;

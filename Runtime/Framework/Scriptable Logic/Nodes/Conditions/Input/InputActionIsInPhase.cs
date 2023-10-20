@@ -1,11 +1,9 @@
 using UDT.Scriptables.Utilities;
-using System;
-using XNode;
 using UDT.Scriptables.Variables;
 
 namespace UDT.Scriptables.Conditions
 {
-    [CreateNodeMenu("Conditions/Input/Input Action Is In Phase")]
+    [CreateNodeMenu("Input/Conditions/Input Action Is In Phase")]
     public class InputActionIsInPhase : ConditionNode
     {
         public InputAction inputAction;

@@ -1,6 +1,6 @@
 namespace UDT.Scriptables.Events
 {
-    [CreateNodeMenu("Events/Input/On Controller Input")]
+    [CreateNodeMenu("Input/Events/On Controller Input")]
     public class OnControllerInput : EventNode<OnControllerInput>
     {
         [Output] public Variables.InputAction inputAction;

@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace UDT.Scriptables.Actions
 {
+    [CreateNodeMenu("Collision/Actions/Raycast")]
     public class Raycast : ActionNode
     {
         [Input(backingValue = ShowBackingValue.Unconnected)] public Variables.Vector3 origin;

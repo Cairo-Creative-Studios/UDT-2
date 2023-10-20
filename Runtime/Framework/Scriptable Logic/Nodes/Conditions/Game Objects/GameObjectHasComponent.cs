@@ -1,13 +1,10 @@
 using UDT.Scriptables.Utilities;
-using XNode;
 using UDT.Scriptables.Variables;
-using System.Runtime.InteropServices.WindowsRuntime;
-using UnityEditor.Experimental.GraphView;
 
 
 namespace UDT.Scriptables.Conditions
 {
-    [CreateNodeMenu("Conditions/Game Object/Has Component")]
+    [CreateNodeMenu("Game Object/Conditions/Has Component")]
     public class GameObjectHasComponent : ConditionNode
     {
         public GameObject gameObject; 

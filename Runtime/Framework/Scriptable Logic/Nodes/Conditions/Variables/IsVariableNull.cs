@@ -3,7 +3,7 @@ using UDT.Scriptables.Variables;
 
 namespace UDT.Scriptables.Conditions
 {
-    [CreateNodeMenu("Conditions/Variable/Is Variable Null")]
+    [CreateNodeMenu("Variable/Conditions/Is Variable Null")]
     public class IsVariableNull : ConditionNode
     {
         [Input] public VariableNode variable;

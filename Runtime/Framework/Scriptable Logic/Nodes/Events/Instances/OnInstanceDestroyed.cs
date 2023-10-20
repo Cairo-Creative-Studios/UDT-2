@@ -1,6 +1,6 @@
 namespace UDT.Scriptables.Events
 {
-    [CreateNodeMenu("Events/Instances/On Instance Destroyed")]
+    [CreateNodeMenu("Instances/Events/On Instance Destroyed")]
     public class OnInstanceDestroyed : InstanceEventNode<OnInstanceDestroyed>
     {
         

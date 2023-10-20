@@ -5,6 +5,7 @@ using UDT.Audio;
 
 namespace UDT.Scriptables.Actions
 {
+    [CreateNodeMenu("Audio/Actions/Play Music")]
     public class PlayMusic : ActionNode
     {
         [Dropdown("GetMusicClips")]

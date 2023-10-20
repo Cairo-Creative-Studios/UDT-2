@@ -1,16 +1,15 @@
-using System;
 using UDT.Scriptables.Utilities;
 using NaughtyAttributes;
 using UDT.Menus;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
-using UDT.Extensions;
 using System.Linq;
 using UDT.Scriptables.Events;
 
 namespace UDT.Scriptables.Actions
 {
-    public class SubscribeMenuElementEvent : ActionNode
+    [CreateNodeMenu("Menus/Actions/Add Menu Event Listener")]
+    public class AddMenuEventListener : ActionNode
     {
         private List<string> events = new List<string>()
         {

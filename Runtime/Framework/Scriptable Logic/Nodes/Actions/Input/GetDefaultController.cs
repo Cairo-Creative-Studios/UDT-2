@@ -1,12 +1,10 @@
-using UnityEngine.InputSystem;
 using UDT.Scriptables.Utilities;
-using NaughtyAttributes;
-using XNode;
 using UDT.Controllables;
 
 namespace UDT.Scriptables.Actions
 {
-	public class GetDefaultController : ActionNode
+    [CreateNodeMenu("Input/Actions/Get Default Controller")]
+    public class GetDefaultController : ActionNode
 	{
 		[Output] public Controller controller;
 

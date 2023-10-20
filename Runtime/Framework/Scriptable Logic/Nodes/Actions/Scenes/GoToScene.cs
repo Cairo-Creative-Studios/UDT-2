@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace UDT.Scriptables.Actions
 {
+    [CreateNodeMenu("Scenes/Actions/Go to Scene")]
     public class GoToScene : ActionNode
     {
         [Input(backingValue = ShowBackingValue.Unconnected)]

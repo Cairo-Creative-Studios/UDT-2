@@ -1,13 +1,7 @@
-using UDT.Scriptables.Utilities;
-using UDT.Scriptables.Variables;
-using XNode;
-using UDT.Controllables.Serialized;
-using NaughtyAttributes;
-using UnityEngine;
 
 namespace UDT.Scriptables.Events
 {
-    [CreateNodeMenu("Events/Audio/On Music Play")]
+    [CreateNodeMenu("Audio/Events/On Music Play")]
     public class OnMusicPlay : EventNode<OnMusicPlay>
     {
         [Output] public Variables.AudioClip audioClip;  

@@ -4,6 +4,7 @@ using UDT.Scriptables.Variables;
 
 namespace UDT.Scriptables.Actions
 {
+    [CreateNodeMenu("Input/Actions/Get Pointer Screen Position")]
     public class GetPointerScreenPosition : ActionNode
     {
         [Output] public Vector2 screenPosition;
